@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+}
+.content {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    270deg,
+    rgba(170, 137, 227, 1) 0%,
+    rgba(131, 96, 244, 1) 100%
+  );
+  /* background-color: #5841a1; */
+}

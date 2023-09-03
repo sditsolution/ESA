@@ -1,0 +1,125 @@
+.header {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  margin-top: 5rem;
+  margin-left: 5rem;
+  justify-content: space-around;
+}
+.gaming {
+  display: flex;
+  flex-direction: column;
+
+  width: 20%;
+  height: 40rem;
+  max-height: 50rem;
+}
+.searchCb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.gamingCb {
+  width: 10rem;
+  height: 2rem;
+  background-color: none;
+  color: black;
+  font-weight: bold;
+  border-color: white;
+  border: solid 0.2rem white;
+  justify-self: center;
+}
+.search {
+  border-radius: 1rem;
+  border: solid 0.5rem white;
+}
+.coachContainer {
+  border: solid 0.2rem white;
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+  height: 100%;
+  overflow: auto;
+}
+.coachContainer p {
+  margin-left: 2rem;
+}
+
+.selectedCoach {
+  display: flex;
+  flex-direction: column;
+  border: solid 0.2rem white;
+  border-radius: 1rem;
+  width: 60%;
+}
+.selectedCoachHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.selectedCoachHeader h1 {
+  margin-right: 3rem;
+}
+.coachImg {
+  width: 12rem;
+  height: 15rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+.selectedCoachDescription {
+  margin: 4rem;
+}
+.selectCoachbuttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.selectedCoachButton {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+
+  color: white;
+  width: 13.5rem;
+  height: 4rem;
+  margin-top: 2rem;
+  border: hidden;
+  border-radius: 90000000px;
+  background-color: rgb(101, 0, 242);
+
+  will-change: transform;
+  transition: transform 0.25s ease-in-out;
+}
+.selectedCoachButton:hover {
+  transform: scale(1.05);
+}
+
+.test {
+  font-size: 7.5rem;
+}
+
+/* * Scrollbar */
+
+.coachContainer::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: white;
+}
+
+.coachContainer::-webkit-scrollbar {
+  width: 12px;
+}
+
+.coachContainer::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
