@@ -6,7 +6,7 @@
   width: 15rem;
   height: 100%;
   margin-bottom: 5rem;
-  background-color: #7053d1;
+  background-color: #3b3b3b;
   /* background-color: #896fd3; */
 }
 .header {
@@ -49,6 +49,7 @@
 }
 .navLabel {
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -67,4 +68,6 @@
 }
 .navLabel:hover {
   transform: scale(1.05);
+  width: 95%;
+  background-color: #6e6d6d;
 }

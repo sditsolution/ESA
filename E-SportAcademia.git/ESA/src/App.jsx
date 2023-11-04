@@ -7,6 +7,7 @@ import Coaching from "./components/coaching/Coaching.jsx";
 import History from "./components/history/History.jsx";
 import BeACoach from "./components/beACoach/BeACoach.jsx";
 import Settings from "./components/settingsfolder/Settings.jsx";
+import SelectedGame from "./components/coaching/SelectedGame.jsx";
 
 function App() {
   return (
@@ -18,7 +19,12 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="/home/calendar" element={<CalendarWindow />} />
-            <Route path="/home/coaching" element={<Coaching />} />
+            <Route path="/home/games" element={<Coaching />}></Route>
+            <Route
+              path="/home/games/:selectedGame"
+              element={<SelectedGame />}
+            />
+
             <Route path="/home/history" element={<History />} />
             <Route path="/home/beACoach" element={<BeACoach />} />
             <Route path="/home/settings" element={<Settings />} />

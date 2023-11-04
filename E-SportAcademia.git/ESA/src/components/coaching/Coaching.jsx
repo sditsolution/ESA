@@ -1,85 +1,79 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import styles from "../../styles/coaching/Coaching.module.css";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import Games from "./Games";
+import img from "../../assets/pictures/lol.png";
+import axios from "axios";
 
-const Coaching = () => {
-  const data = [
-    "America",
-    "India",
-    "Australia",
-    "Argentina",
-    "Ireland",
-    "Indonesia",
-    "Iceland",
-    "Japan",
-  ];
+const Coaching = ({ onHandleNavigation }) => {
+  // hier daten fetchen und aufliste
+  const [gamesData, setGamesData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  let nameTest = "leagueofLegends";
+
+  // Define your RAWG API key and endpoint
+  const api_key = "b5cfcb0f1b474eafb34453ca0ec9fa6f";
+  const endpoint = "games";
+
+  // Define any query parameters (if needed)
+  const params = {
+    key: api_key,
+    page: "2",
+    page_size: "50",
+    // Additional parameters (e.g., 'page', 'search', 'platforms', etc.)
+  };
+  useEffect(() => {
+    axios
+      .get(`https://api.rawg.io/api/${endpoint}`, { params })
+      .then((response) => {
+        setGamesData(response.data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
+  }, []);
 
   return (
-    <div className={styles.header}>
-      <header>Coaching</header>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <header>Games</header>
+      <div className={styles.containerSearch}>
         <div className={styles.gaming}>
-          <div className={styles.searchCb}>
-            <select name="games" className={styles.gamingCb}>
-              <option value="lol">League of Legends</option>
-              <option value="cs">Counter Strike</option>
-              <option value="valo">Valorant</option>
-              <option value="wow">World of Warcarft</option>
+          <div className={styles.searchKategory}>
+            <select className={styles.kategoryCB}>
+              <option>search</option>
+              <option value="mmo">MMO</option>
+              <option value="rpg">RPG</option>
+              <option value="moba">MOA</option>
             </select>
-            <input
-              type="text"
-              className={styles.search}
-              placeholder="Search..."
-            />
           </div>
-          <div className={styles.coachContainer}>
-            <p>Noway4you</p>
+          <div className={styles.sortby}>
+            <label className={styles.sortbyLabel}>sort by</label>
+            <select className={styles.kategoryCB}>
+              <option>Count coaches</option>
+              <option>Name</option>
+            </select>
           </div>
         </div>
-        <div className={styles.selectedCoach}>
-          {/* <Box sx={{ width: "100%" }}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <Tabs aria-label="basic tabs example">
-                <Tab label="Item One" />
-                <Tab label="Item Two" />
-              </Tabs>
-            </Box>
-          </Box> */}
-          <div className={styles.selectedCoachHeader}>
-            {/* <img src="" alt="Picture" className={styles.coachImg} /> */}
-            <div className={styles.coachImg}>
-              <InsertPhotoIcon style={{ fontSize: 200 }} />
-            </div>
-            <div>
-              <h1>Noway4you</h1>
-              <p>Frederik Stürmer</p>
-            </div>
-          </div>
-          <p className={styles.selectedCoachDescription}>
-            {/* 150Words */}
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-            dolor sit amet.
-          </p>
-          <div className={styles.selectCoachbuttons}>
-            <button className={styles.selectedCoachButton}>Report</button>
-            <button className={styles.selectedCoachButton}>Subscribe</button>
-          </div>
+        <div className={styles.containerGames}>
+          <Games
+            img={img}
+            name={"League of Legends"}
+            numberCoaches={100}
+            onHandleNavigation={onHandleNavigation}
+          />
+
+          {gamesData != null
+            ? gamesData.map((game, key) => (
+                <Games
+                  img={game.background_image}
+                  name={game.name}
+                  key={game.id}
+                />
+              ))
+            : null}
         </div>
       </div>
     </div>

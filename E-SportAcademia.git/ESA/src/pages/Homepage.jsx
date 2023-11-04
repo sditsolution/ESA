@@ -1,17 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Homepage.module.css";
 import Login from "../components/Login.jsx";
 
 const Homepage = () => {
+  const [items, setItems] = useState([]);
+
   return (
     <div className={styles.app}>
-      <div className={styles.containerHeader}>
-        <p className={styles.text}>Not a member?</p>
-        <a href="https://www.google.de/" className={styles.signInBtn}>
-          Sign Up
-        </a>
+      <div className={styles.containerLogin}>
+        <Login />
       </div>
-      <Login />
     </div>
   );
 };
