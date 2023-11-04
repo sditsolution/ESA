@@ -71,6 +71,7 @@ const Coaching = ({ onHandleNavigation }) => {
                   img={game.background_image}
                   name={game.name}
                   key={game.id}
+                  onHandleNavigation={onHandleNavigation}
                 />
               ))
             : null}

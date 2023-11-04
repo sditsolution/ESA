@@ -3,14 +3,10 @@ import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import styles from "../../styles/coaching/Games.module.css";
 
 const Games = ({ img, name, numberCoaches, onHandleNavigation }) => {
-  let { selectedGame } = useParams();
-  const navigate = useNavigate();
-
-  selectedGame = name;
   return (
     <div
       className={styles.container}
-      onClick={() => onHandleNavigation(`games/${name}`)}
+      onClick={() => onHandleNavigation("selectedGame", name)}
     >
       <Link to={`games/${name}`}>
         <div className={styles.img}>

@@ -14,11 +14,13 @@ import SelectedGame from "../components/coaching/SelectedGame.jsx";
 const AppLayout = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState("");
+  const [selectedGame, setSelectedGame] = useState();
 
-  function handleNavigation(content) {
-    console.log(content);
+  function handleNavigation(content, game) {
+    //console.log(content);
+    setSelectedGame(game);
     setContent(content);
-    navigate(content);
+    //navigate(content);
   }
 
   return (
@@ -31,8 +33,8 @@ const AppLayout = () => {
           <CalendarWindow />
         ) : content === "games" ? (
           <Coaching onHandleNavigation={handleNavigation} />
-        ) : content === `games/${content}` ? (
-          <SelectedGame />
+        ) : content === "selectedGame" ? (
+          <SelectedGame name={selectedGame} />
         ) : content === "history" ? (
           <History />
         ) : content === "beACoach" ? (

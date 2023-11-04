@@ -1,0 +1,8 @@
+.container {
+  height: 50rem;
+  width: 40rem;
+  margin: 5rem;
+  border-radius: 1rem;
+  border: 0.125rem solid black;
+  background-color: red;
+}
