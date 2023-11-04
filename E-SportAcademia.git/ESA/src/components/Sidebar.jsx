@@ -8,6 +8,7 @@ import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import SensorOccupiedIcon from "@mui/icons-material/SensorOccupied";
 import SettingsIcon from "@mui/icons-material/Settings";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 
 const Sidebar = ({ onHandleNavigation }) => {
   return (
@@ -41,12 +42,12 @@ const Sidebar = ({ onHandleNavigation }) => {
         </label>
       </div>
       <div className={styles.navLabel}>
-        <SupervisorAccountIcon style={{ color: "white" }} />
+        <SportsEsportsIcon style={{ color: "white" }} />
         <label
           className={styles.label}
-          onClick={() => onHandleNavigation("coaching")}
+          onClick={() => onHandleNavigation("games")}
         >
-          Coaching
+          Games
         </label>
       </div>
       <div className={styles.navLabel}>

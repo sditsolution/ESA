@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  height: 25rem;
+  width: 35rem;
+  border-radius: 1.125rem;
+  box-shadow: 0px 0px 11px black;
+  overflow: hidden;
+  background-color: white;
+}
+.containerHeader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.containerHeader h3 {
+  color: black;
+}
+.subslist {
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  margin-bottom: 1rem;
+}

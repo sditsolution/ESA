@@ -9,12 +9,14 @@ import Dashboard from "../components/dashboard/Dashboard.jsx";
 import BeACoach from "../components/beACoach/BeACoach.jsx";
 import History from "../components/history/History.jsx";
 import Settings from "../components/settingsfolder/Settings.jsx";
+import SelectedGame from "../components/coaching/SelectedGame.jsx";
 
 const AppLayout = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState("");
 
   function handleNavigation(content) {
+    console.log(content);
     setContent(content);
     navigate(content);
   }
@@ -27,11 +29,13 @@ const AppLayout = () => {
           <Dashboard />
         ) : content === "calendar" ? (
           <CalendarWindow />
-        ) : content === "coaching" ? (
-          <Coaching />
+        ) : content === "games" ? (
+          <Coaching onHandleNavigation={handleNavigation} />
+        ) : content === `games/${content}` ? (
+          <SelectedGame />
         ) : content === "history" ? (
           <History />
-        ) : content === "bACoach" ? (
+        ) : content === "beACoach" ? (
           <BeACoach />
         ) : content === "settings" ? (
           <Settings />

@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  border: 0.1rem solid black;
+  height: 2rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: space-between;
+  margin-right: 1rem;
+  background-color: white;
+}
+.label {
+  align-self: center;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.options {
+  margin-right: 1rem;
+}
+.notification {
+  margin-top: 0.2rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+.delete {
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
