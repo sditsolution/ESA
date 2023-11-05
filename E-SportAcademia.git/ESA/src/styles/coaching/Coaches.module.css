@@ -1,8 +1,25 @@
 .container {
   height: 50rem;
-  width: 40rem;
+  width: 25rem;
   margin: 5rem;
   border-radius: 1rem;
   border: 0.125rem solid black;
-  background-color: red;
+}
+.containerHeader {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.headerSearch {
+  font-size: 1.25em;
+  margin-left: 2rem;
+  border-radius: 0.5rem;
+  height: 2rem;
+  width: 15rem;
+}
+.coachlist {
+  margin: 2rem;
+  height: 40rem;
+  overflow: hidden;
+  overflow-y: scroll;
 }
