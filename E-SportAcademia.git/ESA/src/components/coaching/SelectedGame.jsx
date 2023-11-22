@@ -8,6 +8,7 @@ import CoachCourses from "../coaching/CoachCourses";
 const SelectedGame = ({ name }) => {
   const [selectedCoach, setSelectedCoach] = useState();
   const [viewCourses, setViewCourses] = useState(false);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>{name}</h1>
@@ -17,8 +18,8 @@ const SelectedGame = ({ name }) => {
           viewCourses={setViewCourses}
           selectedCoach={selectedCoach}
         />
-        {viewCourses && <CoachCourses />}
       </div>
+      {viewCourses && <CoachCourses />}
     </div>
   );
 };

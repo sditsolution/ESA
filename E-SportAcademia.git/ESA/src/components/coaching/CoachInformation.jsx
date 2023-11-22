@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import styles from "../../styles/coaching/CoachInformation.module.css";
 
 const CoachInformation = ({ selectedCoach, viewCourses }) => {
   const [isOpen, setIsOpen] = useState(false);
+
   function HandleCourses(viewCourses) {
     if (isOpen) {
       setIsOpen(false);
@@ -70,12 +72,13 @@ const CoachInformation = ({ selectedCoach, viewCourses }) => {
           <div className={styles.buttonContainer}>
             <button className={styles.primaryButton}>Report</button>
             <button className={styles.primaryButton}>Subscribe</button>
+
             {!isOpen ? (
               <button
                 className={styles.primaryButton}
                 onClick={() => HandleCourses(viewCourses)}
               >
-                View Courses
+                View Courses{" "}
               </button>
             ) : (
               <button

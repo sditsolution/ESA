@@ -10,10 +10,8 @@
 }
 .containerConentent {
   display: flex;
-  justify-content: baseline;
+  justify-content: center;
   align-items: center;
   margin-top: 5rem;
-  margin-left: 10rem;
-  margin-right: 10rem;
   margin-bottom: 5rem;
 }

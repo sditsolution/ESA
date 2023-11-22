@@ -24,7 +24,6 @@ function App() {
               path="/home/games/:selectedGame"
               element={<SelectedGame />}
             />
-
             <Route path="/home/history" element={<History />} />
             <Route path="/home/beACoach" element={<BeACoach />} />
             <Route path="/home/settings" element={<Settings />} />
