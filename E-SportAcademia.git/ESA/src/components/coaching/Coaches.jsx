@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../styles/coaching/Coaches.module.css";
 import Coach from "./Coach";
 
-const Coaches = ({ setCoach }) => {
+const Coaches = ({ setCoach, setIsSelected, isSelected }) => {
   const coachList = [
     {
       id: 1,
@@ -53,7 +53,13 @@ const Coaches = ({ setCoach }) => {
         <div className={styles.coachlist}>
           {coachList != null
             ? coachList.map((coach, key) => (
-                <Coach key={coach.id} setCoach={setCoach} name={coach.name} />
+                <Coach
+                  key={coach.id}
+                  setCoach={setCoach}
+                  name={coach.name}
+                  isSelected={isSelected}
+                  setIsSelected={setIsSelected}
+                />
               ))
             : null}
         </div>

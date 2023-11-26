@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../../styles/coaching/CoachCourses.module.css";
 
-const CoachCourses = () => {
+const CoachCourses = ({ selectedCoach }) => {
   return (
     <div className={styles.container}>
-      Current Courses
+      <h2 className={styles.header}>Courses from {selectedCoach}</h2>
       <div className={styles.containerCourses}>content</div>
     </div>
   );

@@ -6,20 +6,27 @@ import CoachInformation from "../coaching/CoachInformation";
 import CoachCourses from "../coaching/CoachCourses";
 
 const SelectedGame = ({ name }) => {
-  const [selectedCoach, setSelectedCoach] = useState();
+  const [selectedCoach, setSelectedCoach] = useState(null);
   const [viewCourses, setViewCourses] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
 
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>{name}</h1>
       <div className={styles.containerConentent}>
-        <Coaches setCoach={setSelectedCoach} />
-        <CoachInformation
-          viewCourses={setViewCourses}
-          selectedCoach={selectedCoach}
+        <Coaches
+          setCoach={setSelectedCoach}
+          setIsSelected={setIsSelected}
+          isSelected={isSelected}
         />
+        {isSelected ? (
+          <CoachInformation
+            viewCourses={setViewCourses}
+            selectedCoach={selectedCoach}
+          />
+        ) : null}
       </div>
-      {viewCourses && <CoachCourses />}
+      {viewCourses && <CoachCourses selectedCoach={selectedCoach} />}
     </div>
   );
 };

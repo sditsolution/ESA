@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import styles from "../../styles/coaching/CoachInformation.module.css";
+import CloseIcon from "@mui/icons-material/Close";
 
 const CoachInformation = ({ selectedCoach, viewCourses }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,8 @@ const CoachInformation = ({ selectedCoach, viewCourses }) => {
         <>
           <div className={styles.containerHeader}>
             <div className={styles.headerImg}>Img</div>
+            {/* Todo: global css für buttons, icons etc */}
+            <CloseIcon className={styles.close} />
             <div className={styles.socials}>
               <h1>{selectedCoach}</h1>
               <div className={styles.socialList}>

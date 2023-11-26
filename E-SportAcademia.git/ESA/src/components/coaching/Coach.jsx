@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "../../styles/coaching/Coach.module.css";
 
-const Coach = ({ name, setCoach }) => {
+const Coach = ({ name, setCoach, isSelected, setIsSelected }) => {
   function OnHandleSetCoach(name) {
+    setIsSelected(true);
     setCoach(name);
   }
   return (
