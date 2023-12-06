@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+}
+.textarea {
+  margin-top: 5rem;
+  font-size: 1.3em;
+}
+.textarea {
+  font-size: 1.3em;
+  resize: none;
+}
+.containerBtn {
+  display: flex;
+  margin-top: 2rem;
+}

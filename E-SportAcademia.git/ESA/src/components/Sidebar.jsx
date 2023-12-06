@@ -9,7 +9,7 @@ import WorkHistoryIcon from "@mui/icons-material/WorkHistory";
 import SensorOccupiedIcon from "@mui/icons-material/SensorOccupied";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
-
+import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 const Sidebar = ({ onHandleNavigation }) => {
   return (
     <div className={styles.container}>
@@ -48,6 +48,15 @@ const Sidebar = ({ onHandleNavigation }) => {
           onClick={() => onHandleNavigation("games")}
         >
           Games
+        </label>
+      </div>
+      <div className={styles.navLabel}>
+        <EmojiPeopleIcon style={{ color: "white" }} />
+        <label
+          className={styles.label}
+          onClick={() => onHandleNavigation("coaches")}
+        >
+          Coaches
         </label>
       </div>
       <div className={styles.navLabel}>

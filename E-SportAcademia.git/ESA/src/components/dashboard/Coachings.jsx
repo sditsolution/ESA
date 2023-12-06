@@ -64,38 +64,38 @@ const Coachings = () => {
   return (
     <div className={styles.container}>
       <div className={styles.containerHeader}>
-        <h3>Appointment</h3>
-        <div className={styles.containerTable}>
-          <table className={styles.table}>
-            <tbody>
-              <tr>
-                <th>Coach</th>
-                <th>Coursename</th>
-                <th>Date</th>
-                <th>Start</th>
-                <th>End</th>
-                <th>Media</th>
-                <th>Cancel</th>
-              </tr>
+        <h1>Appointment</h1>
+      </div>
+      <div className={styles.containerTable}>
+        <table className={styles.table}>
+          <tbody>
+            <tr>
+              <th>Coach</th>
+              <th>Coursename</th>
+              <th>Date</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Media</th>
+              <th>Cancel</th>
+            </tr>
 
-              {appointments != undefined
-                ? appointments.map((item, key) => (
-                    <tr key={item.id}>
-                      <td>{item.coach}</td>
-                      <td>{item.Coursename}</td>
-                      <td>{item.Date}</td>
-                      <td>{item.Start}</td>
-                      <td>{item.End}</td>
-                      <td>{item.Media}</td>
-                      <td>
-                        <CloseIcon style={{ cursor: "pointer" }} />
-                      </td>
-                    </tr>
-                  ))
-                : null}
-            </tbody>
-          </table>
-        </div>
+            {appointments !== undefined
+              ? appointments.map((item, key) => (
+                  <tr key={item.id}>
+                    <td>{item.coach}</td>
+                    <td>{item.Coursename}</td>
+                    <td>{item.Date}</td>
+                    <td>{item.Start}</td>
+                    <td>{item.End}</td>
+                    <td>{item.Media}</td>
+                    <td>
+                      <CloseIcon style={{ cursor: "pointer" }} />
+                    </td>
+                  </tr>
+                ))
+              : null}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -7,8 +7,11 @@ import Coaching from "./components/coaching/Coaching.jsx";
 import History from "./components/history/History.jsx";
 import BeACoach from "./components/beACoach/BeACoach.jsx";
 import Settings from "./components/settingsfolder/Settings.jsx";
-import SelectedGame from "./components/coaching/SelectedGame.jsx";
-
+import SelectedGame from "./components/games/SelectedGame.jsx";
+import "./styles/app.css";
+import CoachProfile from "./components/coachesPage/CoachProfile.jsx";
+import Test from "./Test.jsx";
+import AllCoaches from "./components/coachesPage/AllCoaches.jsx";
 function App() {
   return (
     <div>
@@ -24,6 +27,9 @@ function App() {
               path="/home/games/:selectedGame"
               element={<SelectedGame />}
             />
+            <Route path="/home/coaches" element={<AllCoaches />}>
+              {/* <Route path="/home/coaches/:coach" element={<CoachProfile />} /> */}
+            </Route>
             <Route path="/home/history" element={<History />} />
             <Route path="/home/beACoach" element={<BeACoach />} />
             <Route path="/home/settings" element={<Settings />} />

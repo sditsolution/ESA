@@ -1,0 +1,18 @@
+.container {
+  cursor: pointer;
+}
+.container :hover {
+  background-color: lightblue;
+}
+.containerContent {
+  display: flex;
+  justify-content: space-around;
+  border: 0.125rem solid black;
+  border-radius: 1rem;
+  width: 65rem;
+  margin-top: 1rem;
+  font-size: 1.5em;
+}
+/* p {
+  margin-left: 6rem;
+} */

@@ -1,0 +1,7 @@
+.headerContainer {
+  background-color: #3b3b3b;
+  height: 5rem;
+}
+.headerContainer h1 {
+  color: white;
+}

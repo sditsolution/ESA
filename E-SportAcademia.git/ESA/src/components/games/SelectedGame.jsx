@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import styles from "../../styles/games/selectedGame.module.css";
 import Coaches from "../coaching/Coaches";
-import CoachInformation from "../coaching/CoachInformation";
 import CoachCourses from "../coaching/CoachCourses";
 
 const SelectedGame = ({ name }) => {
@@ -19,12 +18,12 @@ const SelectedGame = ({ name }) => {
           setIsSelected={setIsSelected}
           isSelected={isSelected}
         />
-        {isSelected ? (
+        {/* {isSelected ? (
           <CoachInformation
             viewCourses={setViewCourses}
             selectedCoach={selectedCoach}
           />
-        ) : null}
+        ) : null} */}
       </div>
       {viewCourses && <CoachCourses selectedCoach={selectedCoach} />}
     </div>

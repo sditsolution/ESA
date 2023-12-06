@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #cbc8c8;
+  flex-direction: column;
+}
+.container h1 {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  color: Black;
+  height: 5%;
+}
+.searchCoach {
+  display: flex;
+  justify-content: space-around;
+  height: 8rem;
+}
+.coachProfiles {
+  display: flex;
+  margin: 10rem;
+}
+.coachProfiles {
+  display: flex;
+  justify-content: space-around;
+}
+.coachViewContainer {
+  cursor: pointer;
+}

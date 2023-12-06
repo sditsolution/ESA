@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.headerContainer {
+  background-color: #3b3b3b;
+  height: 5rem;
+}
+.headerContainer h1 {
+  color: white;
+}
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile {
+  height: 15rem;
+  width: 15rem;
+  margin: 2rem;
+  border: 0.125rem solid black;
+  border-radius: 100rem;
+}
+.profile :hover {
+}
+.profileContainer::after {
+  content: "";
+  display: block;
+  margin-top: 1rem;
+  width: 35rem;
+  border-top: 0.125rem solid black;
+}
+.personals {
+}
+.btnContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 3rem;
+  margin-right: 5rem;
+}

@@ -9,17 +9,25 @@ import Dashboard from "../components/dashboard/Dashboard.jsx";
 import BeACoach from "../components/beACoach/BeACoach.jsx";
 import History from "../components/history/History.jsx";
 import Settings from "../components/settingsfolder/Settings.jsx";
-import SelectedGame from "../components/coaching/SelectedGame.jsx";
+import SelectedGame from "../components/games/SelectedGame.jsx";
+import AllCoaches from "../components/coachesPage/AllCoaches.jsx";
+import CoachProfile from "../components/coachesPage/CoachProfile.jsx";
+import Test from "../Test.jsx";
 
 const AppLayout = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState("");
   const [selectedGame, setSelectedGame] = useState();
+  const [coach, setCoach] = useState();
 
   function handleNavigation(content, game) {
     //console.log(content);
     setSelectedGame(game);
     setContent(content);
+  }
+  function handleCoach(content) {
+    setContent(content);
+    console.log(coach);
     //navigate(content);
   }
 
@@ -37,6 +45,10 @@ const AppLayout = () => {
           <SelectedGame name={selectedGame} />
         ) : content === "history" ? (
           <History />
+        ) : content === "coaches" ? (
+          <AllCoaches onHandleCoach={handleCoach} setCoach={setCoach} />
+        ) : content === "coach" ? (
+          <CoachProfile coach={coach} />
         ) : content === "beACoach" ? (
           <BeACoach />
         ) : content === "settings" ? (

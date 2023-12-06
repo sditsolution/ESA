@@ -10,7 +10,7 @@ const Games = ({ img, name, numberCoaches, onHandleNavigation }) => {
     >
       <Link to={`games/${name}`}>
         <div className={styles.img}>
-          <img src={img} />
+          <img src={img} alt={name} />
         </div>
         <label style={{ fontWeight: "bold", fontSize: "1.2em" }}>{name}</label>
         <label>{numberCoaches} coaches</label>

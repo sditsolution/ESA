@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "../../styles/coaching/Coaching.module.css";
-import Games from "./Games";
+import Games from "../games/Games.jsx";
 import img from "../../assets/pictures/lol.png";
 import axios from "axios";
 

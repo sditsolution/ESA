@@ -1,0 +1,50 @@
+.headerContainer {
+  background-color: #3b3b3b;
+  height: 5rem;
+}
+.headerContainer h1 {
+  color: white;
+}
+
+.primaryBtn {
+  font-size: 1.3em;
+  margin-left: 5rem;
+  height: 3rem;
+  width: 10rem;
+  border-radius: 1.5rem;
+  border: 0.05rem solid black;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.secondaryBtn {
+  font-size: 1.3em;
+  margin-left: 5rem;
+  height: 3rem;
+  width: 10rem;
+  border-radius: 1.5rem;
+  border: 0.05rem solid black;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+.primaryBtn:hover {
+  background-color: white;
+  color: black;
+}
+.secondaryBtn:hover {
+  background-color: black;
+  color: white;
+}
+
+.searchbox {
+  font-size: 1.8em;
+  height: 4rem;
+  width: 20rem;
+  border-radius: 1rem;
+}
+.combobox {
+  font-size: 1.5em;
+  height: 4rem;
+  width: 20rem;
+}

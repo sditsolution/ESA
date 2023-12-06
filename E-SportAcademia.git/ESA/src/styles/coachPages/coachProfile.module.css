@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+.containerInformation {
+  display: flex;
+  flex-direction: row;
+}
+.containerCourseList {
+  height: 72rem;
+  width: 80rem;
+  border: 0.125rem solid black;
+  border-radius: 1rem;
+  background-color: white;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.containerCourseModal {
+  display: flex;
+  flex-direction: column;
+}
+.containerCourseModal h1 {
+  margin-bottom: 0;
+  margin-left: 0;
+}
+.paragraphDate {
+  margin-left: 1rem;
+  margin-bottom: 0;
+  font-size: 2em;
+}
+.paragraphTime {
+  margin-left: 1rem;
+  margin-bottom: 0;
+  font-size: 1.7em;
+}
+.modalAppointment {
+  font-size: 1.3em;
+  display: flex;
+  flex-direction: row;
+  margin-top: 0;
+}
+.modalWhere {
+  display: flex;
+  flex-direction: column;
+}
+.modalWhere h1 {
+  margin-bottom: 1rem;
+  margin-left: 0;
+}
+.modalWhere p {
+  font-size: 2em;
+  margin-left: 1rem;
+  margin-bottom: 0;
+}
+.modalDescription h1 {
+  margin-left: 0;
+}
+.modalDescription p {
+  font-size: 1.5em;
+  margin-top: 0;
+  text-align: justify;
+}
