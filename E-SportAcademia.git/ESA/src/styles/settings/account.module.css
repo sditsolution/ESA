@@ -1,7 +1,102 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 0.125rem solid black;
+  border-radius: 1rem;
+  height: 25rem;
+  width: 80rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: white;
+  overflow: hidden;
+  cursor: pointer;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3b3b3b;
+  color: white;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 80rem;
+  width: 110rem;
+  border: 0.125rem solid black;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: white;
+}
+
 .headerContainer {
   background-color: #3b3b3b;
   height: 5rem;
 }
 .headerContainer h1 {
   color: white;
+}
+.accountContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
+.settingsContent {
+  display: flex;
+  flex-direction: column;
+}
+.contentRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  align-items: center;
+}
+
+.contentSecoundRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.comboBox {
+  height: 2rem;
+  width: 8rem;
+}
+.btnContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 5rem;
+}
+
+.btn {
+  font-size: 1.1em;
+  height: 3rem;
+  width: 10rem;
+  background-color: #3b3b3b;
+  color: white;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+.input {
+  font-size: 1.3em;
+  height: 3rem;
+  width: 15rem;
+}
+.comboBox {
+  font-size: 1.1em;
+  height: 3rem;
+  width: 10rem;
 }

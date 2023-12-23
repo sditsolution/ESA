@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 30rem;
+  width: 45rem;
+  background-color: white;
+  border: 0.125rem solid black;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.header {
+  height: 5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #3b3b3b;
+  color: white;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30rem;
+  font-size: 1.5em;
+  overflow-y: scroll;
+}

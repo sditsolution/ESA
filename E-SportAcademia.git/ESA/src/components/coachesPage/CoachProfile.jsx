@@ -5,7 +5,6 @@ import { useState } from "react";
 import CourseList from "./CourseList.jsx";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import appStyle from "../../styles/app.css";
 
 const CoachProfile = ({ coach }) => {
   const [open, setOpen] = useState(false);

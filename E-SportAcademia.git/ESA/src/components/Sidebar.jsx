@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import styles from "../styles/sidebar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faGripVertical } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +11,36 @@ import SensorOccupiedIcon from "@mui/icons-material/SensorOccupied";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
 import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
-const Sidebar = ({ onHandleNavigation }) => {
+
+const Sidebar = ({ onHandleNavigation, isActiv }) => {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isCoachAreaOpen, setIsCoachAreaOpen] = useState(false);
+
+  function OpenSettings() {
+    if (isSettingsOpen) {
+      setIsSettingsOpen(false);
+      onHandleNavigation("settings");
+    } else {
+      setIsSettingsOpen(true);
+      setIsCoachAreaOpen(false);
+      onHandleNavigation("settings");
+    }
+  }
+
+  function OpenCoachArea() {
+    if (isCoachAreaOpen) {
+      setIsCoachAreaOpen(false);
+      onHandleNavigation("coachArea");
+    } else {
+      setIsCoachAreaOpen(true);
+      setIsSettingsOpen(false);
+      onHandleNavigation("coachArea");
+    }
+  }
+
+  function OpenProfile() {
+    onHandleNavigation("profile");
+  }
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -22,7 +52,7 @@ const Sidebar = ({ onHandleNavigation }) => {
         </div>
         <p className={styles.profileName}>UserName</p>
       </div>
-      <div className={styles.navLabel}>
+      <div className={isActiv ? styles.navLabel : styles.activeNavLabel}>
         <DashboardIcon style={{ color: "white" }} />
 
         <label
@@ -32,15 +62,7 @@ const Sidebar = ({ onHandleNavigation }) => {
           Dashboard
         </label>
       </div>
-      <div className={styles.navLabel}>
-        <CalendarMonthIcon style={{ color: "white" }} />
-        <label
-          className={styles.label}
-          onClick={() => onHandleNavigation("calendar")}
-        >
-          Calendar
-        </label>
-      </div>
+
       <div className={styles.navLabel}>
         <SportsEsportsIcon style={{ color: "white" }} />
         <label
@@ -59,15 +81,7 @@ const Sidebar = ({ onHandleNavigation }) => {
           Coaches
         </label>
       </div>
-      <div className={styles.navLabel}>
-        <WorkHistoryIcon style={{ color: "white" }} />
-        <label
-          className={styles.label}
-          onClick={() => onHandleNavigation("history")}
-        >
-          History
-        </label>
-      </div>
+
       <div className={styles.navLabel}>
         <SensorOccupiedIcon style={{ color: "white" }} />
         <label
@@ -78,12 +92,66 @@ const Sidebar = ({ onHandleNavigation }) => {
         </label>
       </div>
       <div className={styles.navLabel}>
+        <CalendarMonthIcon style={{ color: "white" }} />
+        <label className={styles.label} onClick={() => OpenCoachArea()}>
+          Coach-Area
+        </label>
+      </div>
+      {isCoachAreaOpen && (
+        <>
+          <div className={styles.navLabel}>
+            <label
+              className={styles.childLabel}
+              onClick={() => onHandleNavigation("coachProfile")}
+            >
+              Coachprofile
+            </label>
+          </div>
+          <div className={styles.navLabel}>
+            <label
+              className={styles.childLabel}
+              onClick={() => onHandleNavigation("createCourse")}
+            >
+              Create Course
+            </label>
+          </div>
+        </>
+      )}
+      <div className={styles.navLabel}>
         <SettingsIcon style={{ color: "white" }} />
+        <div className={styles.settingsContainer}>
+          <label className={styles.label} onClick={() => OpenSettings()}>
+            Settings
+          </label>
+        </div>
+      </div>
+      {isSettingsOpen && (
+        <>
+          <div className={styles.navLabel}>
+            <label
+              className={styles.childLabel}
+              onClick={() => onHandleNavigation("profile")}
+            >
+              Profile
+            </label>
+          </div>
+          <div className={styles.navLabel}>
+            <label
+              className={styles.childLabel}
+              onClick={() => onHandleNavigation("account")}
+            >
+              Account
+            </label>
+          </div>
+        </>
+      )}
+      <div className={styles.navLabel}>
+        <SportsEsportsIcon style={{ color: "white" }} />
         <label
           className={styles.label}
-          onClick={() => onHandleNavigation("settings")}
+          onClick={() => onHandleNavigation("impressum")}
         >
-          Settings
+          Impressum
         </label>
       </div>
     </div>
