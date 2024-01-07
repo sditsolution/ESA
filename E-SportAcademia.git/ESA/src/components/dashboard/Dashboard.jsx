@@ -8,10 +8,10 @@ const Dashboard = () => {
   return (
     <div className={styles.container}>
       <h1>Dashboard</h1>
-      <div className={styles.subscription}>
-        <SubsCoaches />
-        <Coachings />
-      </div>
+
+      {/* <SubsCoaches /> */}
+      <Coachings />
+      <div className={styles.searchCourse}>Search Course</div>
     </div>
   );
 };

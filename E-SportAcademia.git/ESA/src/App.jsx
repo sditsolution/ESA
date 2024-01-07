@@ -1,6 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
-import AppLayout from "./pages/Applayout.jsx";
+import AppLayout from "./ui/Applayout.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
 import CalendarWindow from "./components/calendar/CalendarWindow.jsx";
 import Coaching from "./components/coaching/Coaching.jsx";
@@ -8,35 +8,61 @@ import History from "./components/history/History.jsx";
 import BeACoach from "./components/beACoach/BeACoach.jsx";
 import Settings from "./components/settingsfolder/Settings.jsx";
 import SelectedGame from "./components/games/SelectedGame.jsx";
+import Coach from "./components/coaching/Coach.jsx";
 import "./styles/app.css";
-import CoachProfile from "./components/coachesPage/CoachProfile.jsx";
-import Test from "./Test.jsx";
+import Impressum from "./pages/Impressum.jsx";
 import AllCoaches from "./components/coachesPage/AllCoaches.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import Login from "./components/Login.jsx";
+
 function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 0,
+      },
+    },
+  });
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/home" element={<AppLayout />}>
-            <Route index element={<Dashboard />} />
+          {/* <Route index element={<Navigate replace to="/login" />} />
+          <Route path="login" element={<Login />} /> */}
+          <Route element={<AppLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
-            <Route path="/home/calendar" element={<CalendarWindow />} />
-            <Route path="/home/games" element={<Coaching />}></Route>
-            <Route
-              path="/home/games/:selectedGame"
-              element={<SelectedGame />}
-            />
-            <Route path="/home/coaches" element={<AllCoaches />}>
-              {/* <Route path="/home/coaches/:coach" element={<CoachProfile />} /> */}
-            </Route>
-            <Route path="/home/history" element={<History />} />
-            <Route path="/home/beACoach" element={<BeACoach />} />
-            <Route path="/home/settings" element={<Settings />} />
+            <Route path="games" element={<Coaching />} />
+            <Route path="coaches" element={<AllCoaches />} />
+            <Route path="coaches/:coachname" element={<Coach />} />
+            <Route path="history" element={<History />} />
+            <Route path="coaching" element={<BeACoach />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="impressum" element={<Impressum />} />
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptiotion={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 500,
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "var(--color-grey-0)",
+            color: "var(--color-grey-700)",
+          },
+        }}
+      />
+    </QueryClientProvider>
   );
 }
 

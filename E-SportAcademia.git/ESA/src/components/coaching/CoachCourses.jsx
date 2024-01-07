@@ -1,11 +1,11 @@
 import React from "react";
+import Course from "./Course";
 import styles from "../../styles/coaching/CoachCourses.module.css";
 
-const CoachCourses = ({ selectedCoach }) => {
+const CoachCourses = () => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.header}>Courses from {selectedCoach}</h2>
-      <div className={styles.containerCourses}>content</div>
+      <Course />
     </div>
   );
 };

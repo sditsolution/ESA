@@ -4,7 +4,12 @@ import styles from "../../styles/coaching/Coaching.module.css";
 import Games from "../games/Games.jsx";
 import img from "../../assets/pictures/lol.png";
 import axios from "axios";
+import ComboBox from "../../ui/ComboBox.jsx";
+import { Search } from "@mui/icons-material";
+import SearchBox from "../../ui/SearchBox.jsx";
+import Spinner from "../../ui/Spinner.jsx";
 
+// eslint-disable-next-line react/prop-types
 const Coaching = ({ onHandleNavigation }) => {
   // hier daten fetchen und aufliste
   const [gamesData, setGamesData] = useState([]);
@@ -36,46 +41,31 @@ const Coaching = ({ onHandleNavigation }) => {
       });
   }, []);
 
-  return (
-    <div className={styles.container}>
-      <header>Games</header>
-      <div className={styles.containerSearch}>
-        <div className={styles.gaming}>
-          <div className={styles.searchKategory}>
-            <select className={styles.kategoryCB}>
-              <option>search</option>
-              <option value="mmo">MMO</option>
-              <option value="rpg">RPG</option>
-              <option value="moba">MOA</option>
-            </select>
-          </div>
-          <div className={styles.sortby}>
-            <label className={styles.sortbyLabel}>sort by</label>
-            <select className={styles.kategoryCB}>
-              <option>Count coaches</option>
-              <option>Name</option>
-            </select>
-          </div>
-        </div>
-        <div className={styles.containerGames}>
-          <Games
-            img={img}
-            name={"League of Legends"}
-            numberCoaches={100}
-            onHandleNavigation={onHandleNavigation}
-          />
+  //funktioniert noch nicht
+  if (loading) {
+    console.log(loading);
+    return <Spinner />;
+  }
 
-          {gamesData != null
-            ? gamesData.map((game, key) => (
-                <Games
-                  img={game.background_image}
-                  name={game.name}
-                  key={game.id}
-                  onHandleNavigation={onHandleNavigation}
-                />
-              ))
-            : null}
-        </div>
+  return (
+    <div className={styles.contentContainer}>
+      <h1 className="header">Games</h1>
+      <div className={styles.searchContainer}>
+        <ComboBox />
+        <SearchBox />
+      </div>
+      <div className={styles.test}>
+        {gamesData != null
+          ? gamesData.map((game, key) => (
+              <Games
+                img={game.background_image}
+                name={game.name}
+                key={game.id}
+                onHandleNavigation={onHandleNavigation}
+                numberCoaches={0}
+              />
+            ))
+          : null}
       </div>
     </div>
   );

@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  height: 30rem;
+  width: 75rem;
+  border-radius: 1.125rem;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid rgb(197, 196, 196);
+}
+.containerHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #eceef3;
+  height: 5rem;
+  font-weight: bold;
+}
+.content {
+  overflow-y: scroll;
+  align-items: center;
+  height: 13rem;
+  margin-bottom: 1rem;
+}
+.th {
+  width: 10rem;
+}

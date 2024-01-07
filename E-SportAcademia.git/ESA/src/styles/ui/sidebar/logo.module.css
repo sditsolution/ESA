@@ -1,0 +1,9 @@
+.container {
+  height: 10rem;
+}
+.image {
+  object-fit: fill;
+  height: auto;
+  box-shadow: none;
+  background-repeat: none;
+}

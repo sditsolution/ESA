@@ -1,18 +1,13 @@
 .container {
-  border: 0.125rem solid black;
-  border-radius: 1rem;
-  width: 18rem;
-  margin-top: 0.5rem;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+}
+.container h2 {
+  margin-left: 2rem;
 }
 .content {
   display: flex;
-  height: 1.5rem;
-  padding: 0.25rem;
-  padding-left: 1rem;
-  align-items: center;
-  cursor: pointer;
-}
-.container :hover {
-  background-color: #d4d4d4;
+  flex-direction: row;
+  justify-content: space-around;
 }

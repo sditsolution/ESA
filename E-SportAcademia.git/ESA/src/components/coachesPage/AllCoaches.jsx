@@ -12,11 +12,15 @@ import "../../styles/app.css";
 import exampleImg from "../../assets/pictures/NowayExample.png";
 import styles from "../../styles/coachPages/allCoaches.module.css";
 import { IndeterminateCheckBox } from "@mui/icons-material";
+import searchBoxStyle from "../../styles/ui/searchbox.module.css";
+import ComboBox from "../../ui/ComboBox.jsx";
+import NoCoach from "./NoCoach.jsx";
 
 const AllCoaches = ({ onHandleCoach, setCoach }) => {
   const [kategory, setKategory] = useState();
   const [resultKategory, setResultKategory] = useState();
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const coaches = [
     {
@@ -33,12 +37,21 @@ const AllCoaches = ({ onHandleCoach, setCoach }) => {
       img: exampleImg,
       game: "Valorant",
     },
-    { id: 5, name: "Marco", img: exampleImg, game: "World of Warcraft" },
+    { id: 6, name: "Marco", img: exampleImg, game: "World of Warcraft" },
+
+    { id: 7, name: "Marco", img: exampleImg, game: "World of Warcraft" },
+
+    { id: 8, name: "Marco", img: exampleImg, game: "World of Warcraft" },
+
+    { id: 9, name: "Marco", img: exampleImg, game: "World of Warcraft" },
+
+    { id: 10, name: "Marco", img: exampleImg, game: "World of Warcraft" },
+
+    { id: 11, name: "Marco", img: exampleImg, game: "World of Warcraft" },
   ];
 
   function handleCoachView(coach) {
-    setCoach(coach);
-    onHandleCoach("coach");
+    navigate(`/coaches/${coach.name}`);
   }
   function handleChange(event) {
     setKategory(event);
@@ -85,13 +98,6 @@ const AllCoaches = ({ onHandleCoach, setCoach }) => {
     <div className={styles.container}>
       <h1>Coaches</h1>
       <div className={styles.searchCoach}>
-        <input
-          className="searchbox"
-          type="text"
-          placeholder="search"
-          value={search}
-          onChange={(e) => handleSearch(e)}
-        />
         <select
           className="combobox"
           onChange={(e) => handleChange(e.target.value)}
@@ -105,21 +111,31 @@ const AllCoaches = ({ onHandleCoach, setCoach }) => {
           <option value="World of Tanks">World of Tanks</option>
           <option value="Clash of Clans">Clash Royal</option>
         </select>
+        <input
+          className="searchbox"
+          type="text"
+          placeholder="search"
+          value={search}
+          onChange={(e) => handleSearch(e)}
+        />
       </div>
+
       <div className={styles.coachProfiles}>
-        {resultKategory !== undefined
-          ? resultKategory.map((c) => (
-              <>
-                {" "}
-                <div
-                  className={styles.coachViewContainer}
-                  onClick={() => handleCoachView(c)}
-                >
-                  <CoachView name={c.name} img={c.img} key={c.id} />
-                </div>
-              </>
-            ))
-          : null}
+        {resultKategory !== undefined ? (
+          resultKategory.map((c) => (
+            <>
+              {" "}
+              <div
+                className={styles.coachViewContainer}
+                onClick={() => handleCoachView(c)}
+              >
+                <CoachView key={c.id} name={c.name} img={c.img} />
+              </div>
+            </>
+          ))
+        ) : (
+          <NoCoach />
+        )}
       </div>
     </div>
   );

@@ -1,7 +1,13 @@
 .contentContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 41.5rem;
   align-items: center;
+}
+.content {
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
 }

@@ -1,0 +1,12 @@
+.container {
+  height: 5rem;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid rgb(197, 196, 196);
+  align-items: center;
+}
+.image {
+  width: 5rem;
+  height: 5rem;
+  box-shadow: none;
+}

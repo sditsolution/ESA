@@ -1,13 +1,14 @@
 import React from "react";
+import styles from "../../styles/coachPages/coachView.module.css";
 import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 
 const CoachView = ({ name, img }) => {
   return (
-    <div>
+    <div className={styles.container}>
       {/* <Link to={`coach/${name}`}> */}
-      <img src={img} alt="coachpicture" />
+      <img src={img} alt="coachpicture" className={styles.picture} />
       {/* </Link> */}
-      <h3>{name}</h3>
+      <p>{name}</p>
       <p>Subscriber:</p>
     </div>
   );

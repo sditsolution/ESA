@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "../../styles/beACoach/container.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+
 const Container = ({ header, children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,12 +15,12 @@ const Container = ({ header, children }) => {
   return (
     <div className={isOpen ? styles.container : styles.containerClose}>
       <div className={styles.header} onClick={handleOpen}>
-        <h1>{header}</h1>
+        <h3 style={{ marginTop: "1rem" }}>{header}</h3>
         <div>
           {isOpen ? (
-            <RemoveIcon style={{ fontSize: "2.5rem" }} />
+            <RemoveIcon style={{ fontSize: "1.5rem", marginRight: "2rem" }} />
           ) : (
-            <AddIcon style={{ fontSize: "2.5rem" }} />
+            <AddIcon style={{ fontSize: "1.5rem", marginRight: "2rem" }} />
           )}
         </div>
       </div>

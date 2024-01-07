@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: baseline;
-  background-color: #cbc8c8;
+  /* background-color: #cbc8c8; */
 }
 .container h1 {
   margin-left: 2rem;
@@ -10,10 +10,33 @@
   color: Black;
   height: 5%;
 }
-
-.subscription {
+.searchCourse {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  height: 3rem;
+  width: 75rem;
+  color: white;
+  border-radius: 1rem;
+  background-color: #00006d;
+  font-weight: bold;
+  cursor: pointer;
+}
+.searchCourse:hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  height: 3rem;
+  width: 75rem;
+  color: white;
+  border-radius: 1rem;
+  background-color: #000036;
+  font-weight: bold;
+  cursor: pointer;
 }
 .subscribbed {
   display: flex;

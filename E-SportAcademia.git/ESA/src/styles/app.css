@@ -1,50 +1,61 @@
-.headerContainer {
-  background-color: #3b3b3b;
-  height: 5rem;
+.header {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  background-color: #eceef3;
 }
-.headerContainer h1 {
-  color: white;
+.border {
+  border: 1px solid rgb(197, 196, 196);
 }
 
 .primaryBtn {
-  font-size: 1.3em;
-  margin-left: 5rem;
-  height: 3rem;
-  width: 10rem;
-  border-radius: 1.5rem;
-  border: 0.05rem solid black;
-  background-color: black;
+  font-size: 1em;
+  height: 2rem;
+  width: 8rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  background-color: #00006d;
   color: white;
   cursor: pointer;
 }
+.primayBtnDisabled {
+  font-size: 1em;
+  height: 2rem;
+  width: 8rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(201, 198, 198);
+  background-color: rgb(201, 198, 198);
+  color: white;
+}
 .secondaryBtn {
-  font-size: 1.3em;
-  margin-left: 5rem;
-  height: 3rem;
-  width: 10rem;
-  border-radius: 1.5rem;
-  border: 0.05rem solid black;
-  cursor: pointer;
+  font-size: 1em;
+  height: 2rem;
+  width: 8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #000036;
   background-color: white;
-  color: black;
+  color: #000036;
+  cursor: pointer;
 }
 .primaryBtn:hover {
-  background-color: white;
-  color: black;
+  background-color: #000036;
+  color: white;
 }
 .secondaryBtn:hover {
-  background-color: black;
+  background-color: #000036;
   color: white;
 }
 
 .searchbox {
-  font-size: 1.8em;
-  height: 4rem;
-  width: 20rem;
-  border-radius: 1rem;
+  width: 10rem;
+  height: 1.8rem;
+  border-radius: 0.5rem;
+  border-color: black;
 }
+.searchbox::placeholder {
+  font: 1rem sans-serif;
+}
+
 .combobox {
-  font-size: 1.5em;
-  height: 4rem;
-  width: 20rem;
+  height: 2rem;
+  width: 10rem;
 }

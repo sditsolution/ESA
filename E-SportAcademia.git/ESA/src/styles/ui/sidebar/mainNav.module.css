@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  justify-content: center;
+}
+.nav {
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+.nav:hover {
+  background-color: #f2f2f8;
+  border-radius: 5px;
+  padding: 10px 10px;
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../../styles/coaching/Coaches.module.css";
 import Coach from "./Coach";
+import SearchBox from "../../ui/SearchBox";
+import ComboBox from "../../ui/ComboBox";
 
 const Coaches = ({ setCoach, setIsSelected, isSelected }) => {
   const coachList = [
@@ -45,11 +47,6 @@ const Coaches = ({ setCoach, setIsSelected, isSelected }) => {
   return (
     <div className={styles.container}>
       <div className={styles.containerHeader}>
-        <input
-          className={styles.headerSearch}
-          type="text"
-          placeholder="search"
-        />
         <div className={styles.coachlist}>
           {coachList != null
             ? coachList.map((coach, key) => (

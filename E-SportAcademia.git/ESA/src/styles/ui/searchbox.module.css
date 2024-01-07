@@ -1,0 +1,9 @@
+.searchbox {
+  width: 10rem;
+  height: 1.8rem;
+  border-radius: 0.5rem;
+  border-color: black;
+}
+.searchbox::placeholder {
+  font: 1rem sans-serif;
+}

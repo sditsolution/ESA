@@ -1,18 +1,39 @@
 .container {
-  height: auto;
-  width: 90rem;
-  align-self: center;
-  margin-bottom: 5rem;
-  border: 0.125rem solid black;
-  border-radius: 2rem;
   display: flex;
   flex-direction: column;
+  border: 1px solid rgb(197, 196, 196);
+  border-radius: 1.125rem;
+  width: 50rem;
+  height: 34rem;
   overflow: hidden;
 }
 .header {
-  margin-top: 1rem;
-  margin-left: 1rem;
+  border-bottom: 1px solid rgb(197, 196, 196);
 }
-.containerCourses {
-  margin: 2rem;
+.header h3 {
+  margin-left: 2rem;
+}
+.gridContainer {
+  display: grid;
+  height: 2rem;
+  grid-template-columns: repeat(
+    7,
+    1fr
+  ); /* Erstellt 7 Spalten mit gleicher Breite */
+  gap: 1rem; /* Füge einen Abstand zwischen den Zellen hinzu (optional) */
+}
+.gridItem {
+  display: grid;
+  align-content: center;
+  /* Füge hier deine Stilregeln für die Grid-Elemente hinzu */
+  /* Beispiel: width: 100%; */
+  width: 2rem;
+  height: auto;
+  font-weight: bold;
+}
+.containerCoaching {
+  background-color: white;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
 }

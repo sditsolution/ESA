@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.myCoursesContainer {
+  width: 70rem;
+  height: 25rem;
+  border: 1px solid rgb(197, 196, 196);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.containerHeader {
+  background-color: #eceef3;
+  height: 3rem;
+  border-bottom: 1px solid rgb(197, 196, 196);
+}
+.containerHeader h3 {
+  margin: 1rem;
+}

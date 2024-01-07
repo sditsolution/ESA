@@ -1,13 +1,12 @@
+.applayout {
+  display: flex;
+  flex-direction: row;
+}
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 100vh;
 }
 .content {
-  height: 100%;
-  width: 100%;
   overflow-y: scroll;
-  background-color: #cbc8c8;
+  height: 100vh;
 }

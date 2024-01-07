@@ -1,9 +1,7 @@
 .container {
   display: flex;
-  height: 100%;
-  width: 100%;
-  background-color: #cbc8c8;
   flex-direction: column;
+  overflow: hidden;
 }
 .container h1 {
   margin-left: 2rem;
@@ -14,16 +12,17 @@
 .searchCoach {
   display: flex;
   justify-content: space-around;
-  height: 8rem;
+  height: 3rem;
+  width: 30rem;
 }
 .coachProfiles {
   display: flex;
-  margin: 10rem;
-}
-.coachProfiles {
-  display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 32rem;
+  overflow-y: scroll;
+  justify-content: center;
 }
 .coachViewContainer {
   cursor: pointer;
+  margin: 1rem;
 }

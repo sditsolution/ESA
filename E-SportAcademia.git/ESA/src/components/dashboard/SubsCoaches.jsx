@@ -6,7 +6,7 @@ const SubsCoaches = () => {
   return (
     <div className={styles.container}>
       <div className={styles.containerHeader}>
-        <h1>Subcribed Coaches</h1>
+        <h3>Subcribed Coaches</h3>
       </div>
       <div className={styles.subslist}>
         <SubscribedCoach name={"Noway4you"} />

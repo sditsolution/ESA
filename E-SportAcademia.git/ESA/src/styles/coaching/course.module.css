@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.125rem;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid rgb(197, 196, 196);
+}
+.containerHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background-color: #eceef3;
+  height: 2;
+  font-weight: bold;
+}
+.content {
+  overflow-y: scroll;
+  align-items: center;
+  height: 32rem;
+  margin-bottom: 1rem;
+}
+.title {
+  width: 15rem;
+}
+.th {
+  padding: 1rem;
+  width: 10rem;
+}
+
+.viewButton {
+  font-size: 0.9em;
+  height: 2rem;
+  width: 4rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  background-color: #00006d;
+  color: white;
+  cursor: pointer;
+}
+.viewButton:hover {
+  background-color: #000036;
+  color: white;
+}

@@ -1,24 +1,24 @@
 .container {
   display: flex;
   flex-direction: column;
-  border: 0.125rem solid black;
+  border: 1px solid rgb(197, 196, 196);
   border-radius: 1rem;
-  height: 25rem;
-  width: 80rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  height: 15rem;
+  width: 60rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: white;
   overflow: hidden;
 }
 .containerClose {
   display: flex;
   flex-direction: column;
-  border: 0.125rem solid black;
+  border: 1px solid rgb(197, 196, 196);
   border-radius: 1rem;
-  height: 5rem;
-  width: 80rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  height: 3rem;
+  width: 60rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   background-color: white;
   overflow: hidden;
 }
@@ -27,12 +27,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #3b3b3b;
-  color: white;
+  color: black;
+  margin: 1rem;
+  margin-top: 0;
 }
 .contentText {
-  font-size: 1.3em;
-  margin: 2rem;
+  margin: 1rem;
+  margin-right: 3rem;
   justify-content: center;
   text-align: justify;
 }
