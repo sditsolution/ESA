@@ -1,18 +1,24 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: 50rem;
-  height: 50rem;
+  width: 40rem;
+  height: 35rem;
+  overflow-y: scroll;
 }
-
+.content {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 .containerContent {
+  display: flex;
+  flex-direction: column;
   border-top: 1px solid rgb(197, 196, 196);
   /* border-bottom: 1px solid rgb(197, 196, 196); */
+  width: 35rem;
 }
 .rowStyle {
   display: flex;
   margin-left: 2rem;
-  margin-right: 10rem;
   height: 5rem;
   align-items: center;
   justify-content: space-between;
@@ -20,7 +26,6 @@
 .rowStyle2 {
   display: flex;
   margin-left: 2rem;
-  margin-right: 10rem;
   height: 13rem;
   align-items: center;
   justify-content: space-between;
@@ -40,8 +45,7 @@
 }
 .btnContainer {
   display: flex;
-  margin-right: 0;
-  margin-left: 32rem;
+  margin-left: 17rem;
   width: 18rem;
   justify-content: space-between;
 }
@@ -50,8 +54,8 @@
   width: 15rem;
   font-size: 1.5em;
 }
-p {
-  font-size: 1.3em;
+.paragraph {
+  font-size: 1.1em;
   font-weight: bold;
   display: flex;
   justify-content: center;

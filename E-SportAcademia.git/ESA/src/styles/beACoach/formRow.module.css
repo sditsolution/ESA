@@ -5,13 +5,12 @@
 .rowStyle {
   display: flex;
   margin-left: 2rem;
-  margin-right: 10rem;
   height: 5rem;
   align-items: center;
   justify-content: space-between;
 }
 .rowStyle p {
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: bold;
   display: flex;
   justify-content: center;

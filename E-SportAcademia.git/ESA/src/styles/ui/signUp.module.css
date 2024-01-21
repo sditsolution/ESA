@@ -1,0 +1,95 @@
+.test {
+  height: 100vh;
+  width: 100vw;
+}
+.img {
+  /* background-image: url(../../assets/pictures/teamSignUp.jpg); */
+  filter: grayscale(100%);
+  background-repeat: no-repeat;
+  object-fit: fill;
+  background-size: 100% 100%;
+}
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../assets/pictures/teamSignUp.jpg);
+  /* filter: grayscale(100%); */
+  background-repeat: no-repeat;
+  object-fit: fill;
+  background-size: 100% 100%;
+  z-index: 1000;
+}
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1rem;
+  height: 38rem;
+  width: 25rem;
+  background-color: white;
+  background-image: none;
+}
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.option {
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  width: 11rem;
+  border: 1px solid rgb(173, 172, 172);
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+.optionInput {
+  margin-left: 1rem;
+}
+.optionText {
+  margin-left: 1rem;
+}
+.profileInformation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  height: 18rem;
+}
+.profileInformation input::placeholder {
+  font-size: 1em;
+  padding-left: 1rem;
+}
+.profileName {
+  display: flex;
+  justify-content: space-around;
+  width: 25rem;
+  height: 2.5rem;
+  margin-top: 2rem;
+}
+.nameInput {
+  width: 12rem;
+  height: 1.5rem;
+  margin-top: 2rem;
+}
+.profilInput {
+  width: 22rem;
+  height: 2.5rem;
+}
+.policy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}

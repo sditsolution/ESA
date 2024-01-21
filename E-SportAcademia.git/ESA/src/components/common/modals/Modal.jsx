@@ -11,6 +11,7 @@ const StyledModal = styled.div`
   border-radius: 1rem;
   padding: 3.2rem 4rem;
   transition: all 0.5s;
+  border: 1px solid rgb(197, 196, 196);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 `;
 

@@ -15,6 +15,7 @@ import AllCoaches from "./components/coachesPage/AllCoaches.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import Login from "./components/Login.jsx";
+import SignUp from "./components/Signup.jsx";
 
 function App() {
   const queryClient = new QueryClient({
@@ -28,8 +29,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          {/* <Route index element={<Navigate replace to="/login" />} />
-          <Route path="login" element={<Login />} /> */}
+          <Route index element={<Navigate replace to="/login" />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<SignUp />} />
           <Route element={<AppLayout />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="games" element={<Coaching />} />
