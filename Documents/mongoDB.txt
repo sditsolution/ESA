@@ -1,4 +1,0 @@
-mongoDB
-
-Username: ipexx
-password: yCQZuvOMaeGxEucF
