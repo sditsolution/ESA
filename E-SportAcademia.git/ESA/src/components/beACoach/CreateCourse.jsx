@@ -5,9 +5,12 @@ import AddCourse from "./AddCourse";
 
 const CreateCourse = () => {
   return (
-    <div className={styles.container}>
-      <MyCourses />
-      <AddCourse />
+    <div>
+      <h2>Your coachings</h2>
+      <div className={styles.container}>
+        <MyCourses />
+        <AddCourse />
+      </div>
     </div>
   );
 };

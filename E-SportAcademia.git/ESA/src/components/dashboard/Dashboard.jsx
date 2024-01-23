@@ -7,11 +7,12 @@ import Coachings from "./Coachings";
 const Dashboard = () => {
   return (
     <div className={styles.container}>
-      <h1>Dashboard</h1>
-
-      {/* <SubsCoaches /> */}
-      <Coachings />
-      <div className={styles.searchCourse}>Search Course</div>
+      <h2>Dashboard</h2>
+      <div className={styles.containerContent}>
+        {/* <SubsCoaches /> */}
+        <Coachings />
+        <div className={styles.searchCourse}>Search Course</div>
+      </div>
     </div>
   );
 };

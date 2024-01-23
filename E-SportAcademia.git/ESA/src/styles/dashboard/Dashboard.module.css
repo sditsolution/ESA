@@ -1,14 +1,21 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: baseline;
+  height: 40rem;
+  width: 82rem;
   /* background-color: #cbc8c8; */
 }
-.container h1 {
+.container h2 {
   margin-left: 2rem;
   margin-top: 2rem;
   color: Black;
   height: 5%;
+}
+.containerContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .searchCourse {
   display: flex;

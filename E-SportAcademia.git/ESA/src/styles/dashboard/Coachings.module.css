@@ -3,7 +3,7 @@
   flex-direction: column;
   margin-top: 1rem;
   margin-left: 2rem;
-  height: 20rem;
+  height: 30rem;
   width: 75rem;
   border-radius: 1.125rem;
   overflow: hidden;
@@ -23,7 +23,7 @@
 .content {
   overflow-y: scroll;
   align-items: center;
-  height: 13rem;
+  height: 25rem;
   margin-bottom: 1rem;
 }
 .th {
