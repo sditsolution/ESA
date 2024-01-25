@@ -1,11 +1,11 @@
-// app.js
-
+let mysql = require("mysql");
 const express = require("express");
 const bodyParser = require("body-parser");
-let mysql = require("mysql");
+const jwt = require("jsonwebtoken");
+const azureKeyVault = require("./azureKeyVault");
 
 const UserController = require("./Controller/userController");
-const { connect } = require("mongoose");
+const mailController = require("./Controller/mailController");
 
 const app = express();
 const port = 3001;
@@ -42,11 +42,51 @@ connection.connect((err) => {
 });
 
 //Route User
-app.get("/users", async (req, res) => {
-  UserController.getUser(req, res, connection, req.query.email);
+app.get("/getUser", async (req, res) => {
+  UserController.getUser(req, res, connection);
 });
 app.post("/signIn", async (req, res) => {
-  UserController.postSignIn(req, res, connection);
+  const { firstName, email } = req.body;
+  const token = await UserController.postSignIn(req, res, connection);
+  mailController.sendConfirmEmail(firstName, email, token);
+});
+
+//Route registration
+//TODO: Hier weiter machen, im Mail wird gesendet, aber hier gehts nicht weiter
+app.get("/success/:email/:token", async (req, res) => {
+  console.log("Hallo");
+  const email = req.params.email;
+  const token = req.params.token;
+  const secretKey = await azureKeyVault.getSecret("deinSecretKeySecretName");
+  const decoded = jwt.verify(token, secretKey);
+  console.log("Decoded" + decoded);
+
+  // Stelle sicher, dass der Token und die E-Mail gültig sind, bevor du die Datenbank aktualisierst.
+  if (decoded) {
+    const updateQuery =
+      "UPDATE users SET AUTHORZIED = 1,WHERE EMAIL =? AND VERIFICATIONTOKEN=?";
+    connection.query(updateQuery, [email, decoded], (error, results) => {
+      if (error) {
+        console.error(
+          "Fehler bei der Datenbankaktualisierung: " + error.message
+        );
+        res.status(500).send("Fehler bei der Datenbankaktualisierung");
+      } else {
+        if (results.affectedRows > 0) {
+          res.send("E-Mail-Verifizierung erfolgreich!");
+        } else {
+          res.send("Ungültige E-Mail oder Token.");
+        }
+      }
+    });
+  } else {
+    console.log("Fehler");
+  }
+  // Sende eine Bestätigung an den Client
+  res.send("E-Mail-Verifizierung erfolgreich!");
+
+  // Du könntest auch eine HTML-Seite rendern oder eine Weiterleitung durchführen.
+  res.redirect("/.success");
 });
 
 app.listen(port, () => {

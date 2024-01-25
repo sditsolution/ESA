@@ -137,9 +137,6 @@ const SignUp = () => {
     ]
   );
   return (
-    // <>
-    //   <div className={styles.test}>
-    //     <img src={picture} alt="pic" className={styles.img} />
     <div className={styles.container}>
       <div className={styles.contentContainer}>
         <div className={styles.headerContainer}>
@@ -249,15 +246,13 @@ const SignUp = () => {
               Already signed up?{" "}
               <span>
                 {" "}
-                <a href="http://localhost:5173/login">Login</a>
+                <a href="http://localhost:3000/login">Login</a>
               </span>
             </p>{" "}
           </div>
         </div>
       </div>
     </div>
-    //   </div>
-    // </>
   );
 };
 

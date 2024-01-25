@@ -2,6 +2,8 @@ import styles from "../styles/Login.module.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
+import bcrypt from "bcryptjs";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,22 +14,18 @@ const Login = () => {
 
   const getUserData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/getUser?email=${email}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          cache: "no-cache",
-        }
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP-Fehler! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data;
+      return await fetch(`http://localhost:3001/getUser?email=${email}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUserData(data);
+          CheckPassword();
+        });
     } catch (error) {
       console.error("Fehler beim Abrufen der Benutzerdaten:", error);
       throw error;
@@ -40,11 +38,23 @@ const Login = () => {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-  // const { NAME, EMAIL, PASSWORD } = userData;
-
+  function CheckPassword() {
+    const hashedPassword = userData.PASSWORD;
+    bcrypt.compare(password, hashedPassword, function (err, isMatch) {
+      if (err) {
+        console.error("Fehler bei der Passwortüberprüfung:", err);
+        // Hier können Sie entsprechend auf den Fehler reagieren
+      } else if (isMatch) {
+        navigate("/dashboard");
+        // Hier können Sie den Benutzer authentifizieren oder andere Aktionen durchführen
+      } else {
+        toast.error("Email or password are incorrect!");
+        // Hier können Sie entsprechend auf ein inkorrektes Passwort reagieren
+      }
+    });
+  }
   function CheckLoginData() {
     getUserData();
-    console.log(userData);
   }
 
   useEffect(() => {}, [email]);
@@ -55,7 +65,6 @@ const Login = () => {
         <div className={styles.containerLogin}>
           <label className={styles.loginLabel}>LOGIN</label>
           <div className={styles.containerInput}>
-            {/* <label className={styles.fromLabel}>Email</label> */}
             <TextField
               id="outlined-basic"
               label="Email"
