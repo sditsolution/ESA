@@ -1,12 +1,13 @@
 import React from "react";
 import styles from "../../styles/coaching/course.module.css";
+import image from "../../assets/pictures/courseTestpng.png";
 
 const Course = () => {
   const courses = [
     {
       courseId: 1,
       content: {
-        img: "",
+        img: image,
         title: "Wave Management",
         description: "",
         participants: 4,
@@ -18,7 +19,7 @@ const Course = () => {
     {
       courseId: 2,
       content: {
-        img: "",
+        img: image,
         title: "Wave Managenmentd awdasd ads a dasdaw daddadadwadsd",
         description: "",
         participants: 4,
@@ -161,56 +162,68 @@ const Course = () => {
     },
   ];
   return (
-    <div className={styles.container}>
-      <table>
-        <div className={styles.containerHeader}>
-          <tr align="left">
-            {/* <th className={styles.th}>
+    <div className={styles.rootContainer}>
+      <div className={styles.container}>
+        <table>
+          <div className={styles.containerHeader}>
+            <tr align="left">
+              {/* <th className={styles.th}>
               <p style={{ width: "5rem" }}></p>
             </th> */}
-            <th className={styles.th}>
-              <p></p>
-            </th>
-            <th className={styles.title}>
-              <p>Title</p>
-            </th>
-            <th className={styles.th}>
-              <p>Participants</p>
-            </th>
-            <th className={styles.th}>
-              <p>Price</p>
-            </th>
-            <th className={styles.th}>
-              <p>Media</p>
-            </th>
-            <th className={styles.th}>
-              <p></p>
-            </th>
-          </tr>
-        </div>
-        <div className={styles.content}>
-          {courses !== undefined
-            ? courses.map((c) => (
-                <div key={c.id} style={{ marginTop: "1rem" }}>
-                  <tr align="left">
-                    {/* <td className={styles.th}>{c.img}</td> */}
-                    <td className={styles.th}>{c.content.img}</td>
-                    <td className={styles.title}>{c.content.title}</td>
-                    <td className={styles.th}>
-                      {c.content.bookedParticipants}/{c.content.participants}
-                    </td>
-                    <td className={styles.th}>{c.content.price}</td>
-                    <td className={styles.th}>{c.content.media}</td>
+              <th className={styles.th}>
+                <p></p>
+              </th>
+              <th className={styles.title}>
+                <p>Title</p>
+              </th>
+              <th className={styles.th}>
+                <p>Participants</p>
+              </th>
+              <th className={styles.th}>
+                <p>Price</p>
+              </th>
+              <th className={styles.th}>
+                <p>Media</p>
+              </th>
+              <th className={styles.th}>
+                <p></p>
+              </th>
+            </tr>
+          </div>
+          <div className={styles.content}>
+            {courses !== undefined
+              ? courses.map((c) => (
+                  <div key={c.id} style={{ marginTop: "1rem" }}>
+                    <tr style={{ display: "flex", alignItems: "center" }}>
+                      {/* <td className={styles.th}>{c.img}</td> */}
+                      <td className={styles.th}>
+                        <img
+                          src={c.content.img}
+                          alt="coursePic"
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                            objectFit: "fill",
+                          }}
+                        />
+                      </td>
+                      <td className={styles.title}>{c.content.title}</td>
+                      <td className={styles.th}>
+                        {c.content.bookedParticipants}/{c.content.participants}
+                      </td>
+                      <td className={styles.th}>{c.content.price}</td>
+                      <td className={styles.th}>{c.content.media}</td>
 
-                    <td className={styles.th}>
-                      <button className={styles.viewButton}>View</button>
-                    </td>
-                  </tr>
-                </div>
-              ))
-            : null}
-        </div>
-      </table>
+                      <td className={styles.th}>
+                        <button className={styles.viewButton}>View</button>
+                      </td>
+                    </tr>
+                  </div>
+                ))
+              : null}
+          </div>
+        </table>
+      </div>
     </div>
   );
 };

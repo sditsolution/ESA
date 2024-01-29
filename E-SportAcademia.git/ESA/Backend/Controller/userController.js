@@ -26,7 +26,12 @@ module.exports.postSignIn = async (req, res, connection) => {
     req.body;
 
   const secretKey = process.env.JWT_SECRET;
-  const token = jwt.sign({ email: email }, secretKey, { expiresIn: "1h" });
+  const secretKey2 = await azureKeyVault.getSecret("deinSecretKeySecretName");
+
+  const payload = { email: email };
+
+  const options = { expiresIn: "1h" };
+  const token = jwt.sign(payload, secretKey2.value, options);
 
   connection.query(
     `INSERT INTO user (NAME, LASTNAME, INGAMENAME, EMAIL, PASSWORD, AUTHORZIED, VERIFICATIONTOKEN) values (?, ?, ?, ?, ?, ?,?)`,

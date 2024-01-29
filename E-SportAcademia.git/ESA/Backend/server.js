@@ -45,27 +45,34 @@ connection.connect((err) => {
 app.get("/getUser", async (req, res) => {
   UserController.getUser(req, res, connection);
 });
+
 app.post("/signIn", async (req, res) => {
   const { firstName, email } = req.body;
   const token = await UserController.postSignIn(req, res, connection);
   mailController.sendConfirmEmail(firstName, email, token);
 });
 
-//Route registration
-//TODO: Hier weiter machen, im Mail wird gesendet, aber hier gehts nicht weiter
-app.get("/success/:email/:token", async (req, res) => {
-  console.log("Hallo");
-  const email = req.params.email;
-  const token = req.params.token;
-  const secretKey = await azureKeyVault.getSecret("deinSecretKeySecretName");
-  const decoded = jwt.verify(token, secretKey);
-  console.log("Decoded" + decoded);
+app.get("/checkIfAuthenticated", async (req, res) => {
+  //Authenticated from user von loginForm
+  //res.send(true oder false)
+});
 
-  // Stelle sicher, dass der Token und die E-Mail gültig sind, bevor du die Datenbank aktualisierst.
-  if (decoded) {
-    const updateQuery =
-      "UPDATE users SET AUTHORZIED = 1,WHERE EMAIL =? AND VERIFICATIONTOKEN=?";
-    connection.query(updateQuery, [email, decoded], (error, results) => {
+//Route registration
+
+app.get("/success", async (req, res) => {
+  const email = req.query.email;
+  const token = req.query.token;
+  let decoded = "";
+  try {
+    const secretKey = process.env.JWT_SECRET;
+    const secretKey2 = await azureKeyVault.getSecret("deinSecretKeySecretName");
+
+    decoded = jwt.verify(token, secretKey2.value);
+    console.log(decoded);
+
+    // Stelle sicher, dass der Token und die E-Mail gültig sind, bevor du die Datenbank aktualisierst.
+    const updateQuery = "UPDATE user SET AUTHORZIED = 1 WHERE EMAIL =?";
+    connection.query(updateQuery, [email], (error, results) => {
       if (error) {
         console.error(
           "Fehler bei der Datenbankaktualisierung: " + error.message
@@ -73,20 +80,17 @@ app.get("/success/:email/:token", async (req, res) => {
         res.status(500).send("Fehler bei der Datenbankaktualisierung");
       } else {
         if (results.affectedRows > 0) {
-          res.send("E-Mail-Verifizierung erfolgreich!");
+          res.redirect("http://localhost:3000/success");
         } else {
           res.send("Ungültige E-Mail oder Token.");
         }
       }
     });
-  } else {
-    console.log("Fehler");
+  } catch (error) {
+    console.log("Error first Catch:" + error);
+    // Du könntest auch eine HTML-Seite rendern oder eine Weiterleitung durchführen.
+    //res.redirect("/.success");
   }
-  // Sende eine Bestätigung an den Client
-  res.send("E-Mail-Verifizierung erfolgreich!");
-
-  // Du könntest auch eine HTML-Seite rendern oder eine Weiterleitung durchführen.
-  res.redirect("/.success");
 });
 
 app.listen(port, () => {

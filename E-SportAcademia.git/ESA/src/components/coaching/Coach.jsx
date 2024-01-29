@@ -4,7 +4,7 @@ import styles from "../../styles/coaching/Coach.module.css";
 import CoachProfile from "./CoachProfile";
 import CoachCourses from "./CoachCourses";
 
-const Coach = () => {
+const Coach = ({ name }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -13,10 +13,10 @@ const Coach = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Dennis</h2>
+      <h2>{name}</h2>
       <div className={styles.content}>
         <CoachProfile />
-        <CoachCourses />
+        {/* <CoachCourses /> */}
       </div>
     </div>
   );

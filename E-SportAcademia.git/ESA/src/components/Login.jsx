@@ -53,8 +53,29 @@ const Login = () => {
       }
     });
   }
+
+  const checkIfAuthenticated = async () => {
+    return await fetch(
+      `http://localhost:3001/checkIfAuthenticated?email=${email}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      }
+    )
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response);
+        return response;
+      });
+  };
+
   function CheckLoginData() {
-    getUserData();
+    if (checkIfAuthenticated()) {
+      getUserData();
+    }
   }
 
   useEffect(() => {}, [email]);

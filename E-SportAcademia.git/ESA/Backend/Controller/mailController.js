@@ -22,7 +22,7 @@ module.exports.sendConfirmEmail = (name, email, token) => {
       html: `<h1>E-Mail Verifizierung</h1>
             Hallo ${name},
             <p>vielen Dank für deine Registrierung. Bitte klicke auf den Link, um deine Registrierung abzuschließen!</p>
-            <a href=http://localhost:3000/success/${email}/${token}> Zu yTo</a>
+            <a href=http://localhost:3001/success?email=${email}&token=${token}> Zu yTo</a>
             </div>`,
     })
     .catch((err) => console.log(err));

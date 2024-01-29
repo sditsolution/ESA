@@ -3,8 +3,8 @@
   flex-direction: column;
   border: 1px solid rgb(197, 196, 196);
   border-radius: 1.125rem;
-  width: 25rem;
-  height: 34rem;
+  width: 45rem;
+  height: 35rem;
   overflow: hidden;
 }
 .header {
@@ -22,13 +22,12 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  width: 100%;
-  height: 100%;
+  height: 32rem;
 }
 .contentHeader {
   display: flex;
-  justify-content: space-around;
   margin-top: 1rem;
+  margin-left: 2rem;
 }
 .containerImg {
   height: 10rem;
@@ -44,26 +43,35 @@
 }
 
 .containerSocials {
+  margin-left: 2rem;
   display: flex;
   flex-direction: column;
+  width: 15rem;
 }
 .containerSocials ul {
   text-decoration: none;
   list-style: none;
 }
+.rewards {
+  margin-left: 2rem;
+}
 
 .stars {
-  margin: 1rem;
+  margin-left: 2rem;
 }
 .containerText {
-  margin: 0.5rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   height: 14rem;
   overflow-y: scroll;
-
   text-align: justify;
 }
 .containerButton {
   display: flex;
-  margin: 0.5rem;
-  justify-content: flex-end;
+  margin-left: 23rem;
+  margin-top: 1rem;
+  width: 20rem;
+  flex-direction: row-reverse;
+  justify-content: space-around;
 }

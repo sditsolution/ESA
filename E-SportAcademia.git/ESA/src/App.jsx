@@ -17,6 +17,7 @@ import { Toaster } from "react-hot-toast";
 import Login from "./components/Login.jsx";
 import SignUp from "./components/SignUp.jsx";
 import SuccessVerfification from "./pages/SuccessVerfification.jsx";
+import Course from "./components/coaching/Course.jsx";
 
 function App() {
   const queryClient = new QueryClient({
@@ -39,6 +40,7 @@ function App() {
             <Route path="games" element={<Coaching />} />
             <Route path="coaches" element={<AllCoaches />} />
             <Route path="coaches/:coachname" element={<Coach />} />
+            <Route path="coaches/:coachname/courses" element={<Course />} />
             <Route path="history" element={<History />} />
             <Route path="coaching" element={<BeACoach />} />
             <Route path="settings" element={<Settings />} />
