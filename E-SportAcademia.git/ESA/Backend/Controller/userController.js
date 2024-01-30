@@ -5,7 +5,7 @@ const azureKeyVault = require("./../azureKeyVault");
 module.exports.getUser = async (req, res, connection) => {
   const { email } = req.query;
   connection.query(
-    "SELECT PASSWORD FROM user WHERE EMAIL =?",
+    "SELECT PASSWORD,AUTHORZIED FROM user WHERE EMAIL =?",
     [email],
     (err, results) => {
       if (err) {
@@ -15,6 +15,7 @@ module.exports.getUser = async (req, res, connection) => {
         const rawdata = results[0];
         // Umwandeln des RowDataPacket-Objekts in ein JSON-Objekt
         const data = { ...rawdata };
+
         res.status(200).send(data);
       }
     }
@@ -46,4 +47,32 @@ module.exports.postSignIn = async (req, res, connection) => {
     }
   );
   return token;
+};
+module.exports.getUserLogin = async (req, res, connection) => {
+  const { email } = req.query;
+  let verify;
+
+  connection.query(
+    `SELECT AUTHORZIED FROM user WHERE EMAIL =?`,
+    [email],
+    (err, result) => {
+      if (err) {
+        console.log("Get data from database failed", err);
+        res.status(500).send("Fehler beim Abrufen der Benutzerdaten");
+      } else {
+        const rawData = result[0];
+        const data = { ...rawData };
+        const value = data.AUTHORZIED;
+        if (value === 1) {
+          verify = true;
+          res.send(verify);
+          return verify;
+        } else {
+          verify = false;
+          res.send(verify);
+          return verify;
+        }
+      }
+    }
+  );
 };

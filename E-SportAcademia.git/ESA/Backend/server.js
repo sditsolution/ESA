@@ -52,14 +52,13 @@ app.post("/signIn", async (req, res) => {
   mailController.sendConfirmEmail(firstName, email, token);
 });
 
-app.get("/checkIfAuthenticated", async (req, res) => {
-  //Authenticated from user von loginForm
-  //res.send(true oder false)
-});
+// app.get("/checkIfAuthenticated", async (req, res) => {
+//   //Authenticated from user von loginForm
+//   UserController.getUserLogin(req, res, connection);
+// });
 
 //Route registration
-
-app.get("/success", async (req, res) => {
+app.get("/verification", async (req, res) => {
   const email = req.query.email;
   const token = req.query.token;
   let decoded = "";
@@ -68,7 +67,6 @@ app.get("/success", async (req, res) => {
     const secretKey2 = await azureKeyVault.getSecret("deinSecretKeySecretName");
 
     decoded = jwt.verify(token, secretKey2.value);
-    console.log(decoded);
 
     // Stelle sicher, dass der Token und die E-Mail gültig sind, bevor du die Datenbank aktualisierst.
     const updateQuery = "UPDATE user SET AUTHORZIED = 1 WHERE EMAIL =?";
@@ -80,16 +78,15 @@ app.get("/success", async (req, res) => {
         res.status(500).send("Fehler bei der Datenbankaktualisierung");
       } else {
         if (results.affectedRows > 0) {
-          res.redirect("http://localhost:3000/success");
+          res.redirect("http://localhost:3000/verification");
         } else {
-          res.send("Ungültige E-Mail oder Token.");
+          res.redirect("http://localhost:3000/failedverification");
         }
       }
     });
   } catch (error) {
-    console.log("Error first Catch:" + error);
-    // Du könntest auch eine HTML-Seite rendern oder eine Weiterleitung durchführen.
-    //res.redirect("/.success");
+    console.log(error);
+    res.redirect("http://localhost:3000/failedverification");
   }
 });
 

@@ -12,6 +12,16 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  function CheckAuth(authStatus) {
+    console.log(authStatus);
+    if (authStatus) {
+      return true;
+    } else {
+      toast.error("Email is not verified");
+      return false;
+    }
+  }
+
   const getUserData = async () => {
     try {
       return await fetch(`http://localhost:3001/getUser?email=${email}`, {
@@ -23,8 +33,11 @@ const Login = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          setUserData(data);
-          CheckPassword();
+          const { PASSWORD: passwordBackend, AUTHORZIED: auth } = data;
+
+          if (CheckAuth(auth)) {
+            CheckPassword(passwordBackend);
+          }
         });
     } catch (error) {
       console.error("Fehler beim Abrufen der Benutzerdaten:", error);
@@ -38,9 +51,8 @@ const Login = () => {
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-  function CheckPassword() {
-    const hashedPassword = userData.PASSWORD;
-    bcrypt.compare(password, hashedPassword, function (err, isMatch) {
+  function CheckPassword(backendPassword) {
+    bcrypt.compare(password, backendPassword, function (err, isMatch) {
       if (err) {
         console.error("Fehler bei der Passwortüberprüfung:", err);
         // Hier können Sie entsprechend auf den Fehler reagieren
@@ -54,28 +66,8 @@ const Login = () => {
     });
   }
 
-  const checkIfAuthenticated = async () => {
-    return await fetch(
-      `http://localhost:3001/checkIfAuthenticated?email=${email}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-cache",
-      }
-    )
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response);
-        return response;
-      });
-  };
-
   function CheckLoginData() {
-    if (checkIfAuthenticated()) {
-      getUserData();
-    }
+    getUserData();
   }
 
   useEffect(() => {}, [email]);

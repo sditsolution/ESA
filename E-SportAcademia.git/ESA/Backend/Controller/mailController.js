@@ -18,12 +18,16 @@ module.exports.sendConfirmEmail = (name, email, token) => {
     .sendMail({
       from: "yto1@gmx.de",
       to: email,
-      subject: "yTo: Verifizierung",
-      html: `<h1>E-Mail Verifizierung</h1>
-            Hallo ${name},
-            <p>vielen Dank für deine Registrierung. Bitte klicke auf den Link, um deine Registrierung abzuschließen!</p>
-            <a href=http://localhost:3001/success?email=${email}&token=${token}> Zu yTo</a>
-            </div>`,
+      subject: "ESA: Verifizierung",
+      html: `<h1>Account authentification</h1>,
+      <p>Thank you for registering with ESports Academia. To activate your account, please click on the following link:</p>
+      <a href=http://localhost:3001/verification?email=${email}&token=${token}/>
+      <p>Please note that this activation link must be accessed within the next hour to complete your registration.</p>
+      <p>If you do not activate the link within the next hour, you will need to register again.</p>
+      <p>Thank you and welcome to ESports Academia.</p>
+      <p>Best regards,</p>
+      <p>The ESports Academia Team</p>
+      `,
     })
     .catch((err) => console.log(err));
 };
