@@ -1,4 +1,5 @@
 let mysql = require("mysql");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
@@ -6,6 +7,7 @@ const azureKeyVault = require("./azureKeyVault");
 
 const UserController = require("./Controller/userController");
 const mailController = require("./Controller/mailController");
+const CoachController = require("./Controller/coachController");
 
 const app = express();
 const port = 3001;
@@ -45,17 +47,51 @@ connection.connect((err) => {
 app.get("/getUser", async (req, res) => {
   UserController.getUser(req, res, connection);
 });
-
 app.post("/signIn", async (req, res) => {
   const { firstName, email } = req.body;
   const token = await UserController.postSignIn(req, res, connection);
   mailController.sendConfirmEmail(firstName, email, token);
 });
+app.post("/updateCredential", async (req, res) => {
+  UserController.postProfileCredential(req, res, connection);
+});
+app.post("/updateAccount", async (req, res) => {
+  UserController.postAccountCredential(req, res, connection);
+});
+app.get("/getUsercredential", async (req, res) => {
+  const { credential } = req.query;
+  UserController.getCredentials(req, res, connection, credential);
+});
+app.post("/updateUserPassword", async (req, res) => {
+  const { cryptedPassword, userID } = req.body;
+  UserController.postUpdateUserPassword(
+    req,
+    res,
+    connection,
+    cryptedPassword,
+    userID
+  );
+});
+app.post("/updateEmail", async (req, res) => {
+  UserController.postUpdateEmail(req, res, connection);
+});
+app.post("/changeEmail", async (req, res) => {
+  mailController.changeEmail(req, res, connection);
+});
+app.post("/deleteAccount", async (req, res) => {
+  UserController.updateDeleteAccount(req, res, connection);
+});
+app.post("/joinCoach", async (req, res) => {
+  UserController.postJoinCoach(req, res, connection);
+});
 
-// app.get("/checkIfAuthenticated", async (req, res) => {
-//   //Authenticated from user von loginForm
-//   UserController.getUserLogin(req, res, connection);
-// });
+//Route Coaching
+app.post("/createCoaching", async (req, res) => {
+  CoachController.postCreateCoaching(req, res, connection);
+});
+app.get("/getCoaching", async (req, res) => {
+  CoachController.getCoaching(req, res, connection);
+});
 
 //Route registration
 app.get("/verification", async (req, res) => {
@@ -66,7 +102,7 @@ app.get("/verification", async (req, res) => {
     const secretKey = process.env.JWT_SECRET;
     const secretKey2 = await azureKeyVault.getSecret("deinSecretKeySecretName");
 
-    decoded = jwt.verify(token, secretKey2.value);
+    decoded = jwt.verify(token, secretKey);
 
     // Stelle sicher, dass der Token und die E-Mail gültig sind, bevor du die Datenbank aktualisierst.
     const updateQuery = "UPDATE user SET AUTHORZIED = 1 WHERE EMAIL =?";
@@ -88,6 +124,10 @@ app.get("/verification", async (req, res) => {
     console.log(error);
     res.redirect("http://localhost:3000/failedverification");
   }
+});
+app.get("/verifyEmailChange", async (req, res) => {
+  const token = req.query.token;
+  res.redirect(`http://localhost:3000/changeEmail/${token}`);
 });
 
 app.listen(port, () => {

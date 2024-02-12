@@ -5,6 +5,16 @@
   height: 35rem;
   overflow-y: scroll;
 }
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.selection {
+  width: 10rem;
+  height: 2rem;
+  margin-right: 5rem;
+}
 .content {
   margin-left: 1rem;
   margin-right: 1rem;

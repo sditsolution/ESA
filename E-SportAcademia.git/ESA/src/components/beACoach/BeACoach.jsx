@@ -4,21 +4,53 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import CreateCourse from "./CreateCourse.jsx";
 import styles from "../../styles/beACoach/BeACoach.module.css";
+import toast from "react-hot-toast";
 
 const BeACoach = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [joinNow, setJoinNow] = useState(false);
+  const [userData, setUserData] = useState();
 
   function handleChange(event) {
     setIsChecked(event.target.checked);
   }
 
-  useEffect(() => {}, [isChecked, joinNow]);
+  const joinCoach = async () => {
+    let userID = userData.USER_ID;
+    return await fetch(`http://localhost:3001/joinCoach`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-cache",
+      body: JSON.stringify({ userID }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.serverStatus === 2) {
+          toast.success(`Welcome to our coaching team`);
+          setJoinNow(true);
+        } else if (data.serverStatus === -1) {
+          toast.error("Failed to join coaching team");
+        }
+      })
+      .catch((error) => toast.error("Delete account failed"));
+  };
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("userContext");
+    if (userDataString) {
+      const parsedUserData = JSON.parse(userDataString);
+      setUserData(parsedUserData);
+    }
+  }, [isChecked, joinNow]);
 
   return (
     <div className={styles.contentContainer}>
-      {joinNow ? (
-        <CreateCourse />
+      {userData !== undefined && userData.idcoach ? (
+        <>
+          <CreateCourse userID={userData} />
+        </>
       ) : (
         <div className={styles.content}>
           <Container header="How to coach?">
@@ -72,7 +104,7 @@ const BeACoach = () => {
             <button
               className={isChecked ? "primaryBtn" : "primayBtnDisabled"}
               disabled={!isChecked}
-              onClick={() => setJoinNow(true)}
+              onClick={joinCoach}
             >
               JOIN NOW
             </button>

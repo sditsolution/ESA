@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  height: 10rem;
+  width: 20rem;
+  flex-direction: column;
+}
+.container h3 {
+  margin-left: 0;
+}
+.content {
+  margin-top: 1rem;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 20rem;
+  margin-top: 2rem;
+}

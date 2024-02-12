@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/beACoach/addCourse.module.css";
 import Modal from "../common/modals/Modal";
 import CreateCourseForm from "./CreateCourseForm";
 
-const AddCourse = () => {
+const AddCourse = ({ userID }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const userDataString = localStorage.getItem("userContext");
+    if (userDataString) {
+      const parsedUserData = JSON.parse(userDataString);
+      setUserData(parsedUserData);
+    }
+  }, []);
   return (
     <div>
       <button
@@ -15,7 +24,10 @@ const AddCourse = () => {
       </button>
       {isOpenModal && (
         <Modal onClose={() => setIsOpenModal(false)}>
-          <CreateCourseForm onCloseModal={() => setIsOpenModal(false)} />
+          <CreateCourseForm
+            onCloseModal={() => setIsOpenModal(false)}
+            userID={userData.idcoach}
+          />
         </Modal>
       )}
     </div>

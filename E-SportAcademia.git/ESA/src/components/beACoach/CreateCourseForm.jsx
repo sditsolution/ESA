@@ -4,9 +4,18 @@ import FormRow from "./FormRow";
 import NumberPicker from "react-widgets/NumberPicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-widgets/styles.css";
+import toast from "react-hot-toast";
 
-const CreateCourseForm = ({ onCloseModal }) => {
+const CreateCourseForm = ({ onCloseModal, userID }) => {
   const inputFile = useRef(null);
+  const [selectedGame, setSelectedGame] = useState(null);
+  const [gameIndex, setGameIndex] = useState(0);
+  const gameOptions = [
+    "League",
+    "Counter Strike 2",
+    "Clash Royal",
+    "Clash of Clans",
+  ]; //TODO: AUS DATABASE HOLEN
   const [title, setTitle] = useState("");
   const [participant, setParticipant] = useState(0);
   const [price, setPrice] = useState(0);
@@ -44,18 +53,47 @@ const CreateCourseForm = ({ onCloseModal }) => {
     setDescription(e);
   }
   const handleDateChange = (event) => {
-    const selectedDate = new Date(event);
-    setSelectedDate(selectedDate);
+    const formattedDate = convertToMySQLFormat(event);
+    setSelectedDate(formattedDate);
+  };
+  const convertToMySQLFormat = (isoDateString) => {
+    const dateObject = new Date(isoDateString);
+    const mysqlDateString = dateObject
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " ");
+    return mysqlDateString;
+  };
+  const convertToMySQLTimeFormat = (isoTimeString) => {
+    const currentDate = new Date();
+    const isoDateTimeString = `${currentDate
+      .toISOString()
+      .slice(0, 10)}T${isoTimeString}Z`;
+
+    const dateObject = new Date(isoDateTimeString);
+    const mysqlDateTimeFormat = dateObject
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " ");
+
+    return mysqlDateTimeFormat;
   };
   function handleStartTimeChange(event) {
-    setSelectedStartTime(event);
+    const formattedTime = convertToMySQLTimeFormat(event);
+    setSelectedStartTime(formattedTime);
   }
   function handleEndTimeChange(event) {
-    setSelectedEndTime(event);
+    const formattedTime = convertToMySQLTimeFormat(event);
+    setSelectedEndTime(formattedTime);
   }
   function handleMedia(e) {
     setMedia(e);
   }
+  const handleGameChange = (event) => {
+    const selectedIndex = event.target.value;
+    setGameIndex(selectedIndex);
+    setSelectedGame(gameOptions[selectedIndex]);
+  };
   function OpenFileDialog() {
     inputFile.current.click();
     // setSelectedFile(inputFile);
@@ -66,6 +104,7 @@ const CreateCourseForm = ({ onCloseModal }) => {
   }
   function createCoaching() {
     if (
+      selectedGame !== 0 &&
       title.trim() !== "" &&
       price >= 0 &&
       participant >= 0 &&
@@ -76,17 +115,60 @@ const CreateCourseForm = ({ onCloseModal }) => {
       selectedEndTime !== null
     ) {
       setIsDisabled(false);
-    } else {
-      console.log("true");
     }
   }
+
+  const insertCoaching = async () => {
+    return await fetch(`http://localhost:3001/createCoaching`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-cache",
+      body: JSON.stringify({
+        gameIndex,
+        title,
+        selectedDate,
+        selectedStartTime,
+        selectedEndTime,
+        price,
+        participant,
+        paymentESA,
+        revenue,
+        description,
+        media,
+        userID,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.serverStatus === 2) {
+          toast.success("Successfull");
+          onCloseModal();
+        }
+      })
+      .catch((error) => toast.error("Failed update account settings"));
+  };
   useEffect(function () {
     Calculation();
     createCoaching();
   });
   return (
     <div className={styles.container}>
-      <h2>Create your coaching</h2>
+      <div className={styles.headerContainer}>
+        <h2>Create your coaching in</h2>
+        <select
+          onChange={handleGameChange}
+          value={selectedGame !== null ? gameOptions.indexOf(selectedGame) : ""}
+          className={styles.selection}
+        >
+          {gameOptions.map((game, index) => (
+            <option key={index} value={index}>
+              {game}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className={styles.containerContent}>
         <FormRow label="Titel">
           <input
@@ -106,7 +188,6 @@ const CreateCourseForm = ({ onCloseModal }) => {
           <p>Start</p>
           <input
             type="time"
-            value={selectedStartTime}
             onChange={(e) => handleStartTimeChange(e.target.value)}
           />
         </div>
@@ -114,7 +195,6 @@ const CreateCourseForm = ({ onCloseModal }) => {
           <p>End</p>
           <input
             type="time"
-            value={selectedEndTime}
             onChange={(e) => handleEndTimeChange(e.target.value)}
           />
         </div>
@@ -200,7 +280,7 @@ const CreateCourseForm = ({ onCloseModal }) => {
           </button>
           <button
             className={!isDisabled ? "primaryBtn" : "primayBtnDisabled"}
-            onClick={createCoaching}
+            onClick={insertCoaching}
             disabled={isDisabled}
           >
             Create coaching

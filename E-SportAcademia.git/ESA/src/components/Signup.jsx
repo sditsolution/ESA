@@ -21,11 +21,9 @@ const SignUp = () => {
   }
   function validateEmailState() {
     if (ValidateEmail(email)) {
-      console.log("false");
       setValidateEmail(true);
       setSignIn(false);
     } else {
-      console.log("true");
       setValidateEmail(false);
       setSignIn(true);
     }
@@ -111,7 +109,6 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.serverStatus);
         if (data.serverStatus === 2) {
           navigate("/login");
         }

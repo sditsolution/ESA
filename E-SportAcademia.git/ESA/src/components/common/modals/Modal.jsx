@@ -37,7 +37,7 @@ const Button = styled.button`
   right: 1.9rem;
 
   &:hover {
-    background-color: #d9d6d6;
+    background-color: #edebeb;
   }
 
   & svg {

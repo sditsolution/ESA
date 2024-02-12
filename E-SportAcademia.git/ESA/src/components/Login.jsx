@@ -1,19 +1,20 @@
 import styles from "../styles/Login.module.css";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import bcrypt from "bcryptjs";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { UserContext } from "./../App.jsx";
 
 const Login = () => {
+  const { loginUser } = useContext(UserContext);
+
   const navigate = useNavigate();
   const [isLoggedIn, setLoggedIn] = useState(true);
-  const [userData, setUserData] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function CheckAuth(authStatus) {
-    console.log(authStatus);
     if (authStatus) {
       return true;
     } else {
@@ -32,11 +33,19 @@ const Login = () => {
         cache: "no-cache",
       })
         .then((res) => res.json())
-        .then((data) => {
-          const { PASSWORD: passwordBackend, AUTHORZIED: auth } = data;
+        .then((backendData) => {
+          const { PASSWORD: passwordBackend, AUTHORZIED: auth } = backendData;
+          let pass = passwordBackend;
 
           if (CheckAuth(auth)) {
-            CheckPassword(passwordBackend);
+            loginUser(backendData);
+            console.log(backendData);
+            navigate("/dashboard");
+            // console.log(data);
+          }
+          if (CheckPassword(pass)) {
+            //TODO: Check password from backend and navigate afterwards
+            console.log("right Password");
           }
         });
     } catch (error) {
@@ -55,13 +64,11 @@ const Login = () => {
     bcrypt.compare(password, backendPassword, function (err, isMatch) {
       if (err) {
         console.error("Fehler bei der Passwortüberprüfung:", err);
-        // Hier können Sie entsprechend auf den Fehler reagieren
       } else if (isMatch) {
-        navigate("/dashboard");
-        // Hier können Sie den Benutzer authentifizieren oder andere Aktionen durchführen
+        return true;
       } else {
         toast.error("Email or password are incorrect!");
-        // Hier können Sie entsprechend auf ein inkorrektes Passwort reagieren
+        return false;
       }
     });
   }

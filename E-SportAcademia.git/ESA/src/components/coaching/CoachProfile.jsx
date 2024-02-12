@@ -11,7 +11,6 @@ const CoachProfile = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <h3>Profile</h3>
-        <button onClick={() => console.log(test)}>dasdasdas</button>
       </div>
       <div className={styles.content}>
         <div className={styles.contentHeader}>

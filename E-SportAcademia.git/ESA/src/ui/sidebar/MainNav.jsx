@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineHome } from "react-icons/hi2";
 import { GrGamepad } from "react-icons/gr";
 import { BsPeople } from "react-icons/bs";
@@ -7,11 +7,22 @@ import { HiOutlineCog6Tooth } from "react-icons/hi2";
 import { HiOutlineScale } from "react-icons/hi2";
 
 import styles from "../../styles/ui/sidebar/mainNav.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 
 const MainNav = () => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState();
 
+  function NavigateToSetting() {
+    navigate(`/settings/${userData.USERCREDENTIAL}`);
+  }
+  useEffect(() => {
+    const userDataString = localStorage.getItem("userContext");
+    if (userDataString) {
+      const parsedUserData = JSON.parse(userDataString);
+      setUserData(parsedUserData);
+    }
+  }, []);
   return (
     <nav>
       <ul className={styles.container}>
@@ -75,7 +86,7 @@ const MainNav = () => {
           </div>
         </li>
         <li>
-          <div className={styles.nav} onClick={() => navigate("/settings")}>
+          <div className={styles.nav} onClick={() => NavigateToSetting()}>
             <HiOutlineCog6Tooth />
             <NavLink
               to="/settings"
