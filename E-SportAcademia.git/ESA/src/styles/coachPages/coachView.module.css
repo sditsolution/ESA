@@ -1,7 +1,23 @@
 .container {
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid rgb(197, 196, 196);
+  height: 15rem;
+  width: 12rem;
+  border-radius: 1rem;
+  justify-content: space-between;
+  transition: transform 0.4s;
+  background-color: white;
 }
-p {
+.container:hover {
+  transform: scale(1.05); /* Ändere den Wert, um die Vergrößerung anzupassen */
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 3rem;
+  margin-left: 1rem;
+}
+.content p {
   margin: 0;
 }

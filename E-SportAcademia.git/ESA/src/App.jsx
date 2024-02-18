@@ -78,6 +78,7 @@ function App() {
             <Route element={<AppLayout />}>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="games" element={<Coaching />} />
+              <Route path="games/:gameid" element={<SelectedGame />} />
               <Route path="coaches" element={<AllCoaches />} />
               <Route path="coaches/:coachname" element={<Coach />} />
               <Route path="coaches/:coachname/courses" element={<Course />} />

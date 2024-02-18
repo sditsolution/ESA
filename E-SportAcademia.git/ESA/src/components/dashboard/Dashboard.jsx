@@ -13,7 +13,7 @@ const Dashboard = () => {
       <h2>Dashboard</h2>
       <div className={styles.containerContent}>
         {/* <SubsCoaches /> */}
-        <button onClick={() => console.log(userContextData)}>asdadsad</button>
+        {/* <button onClick={() => console.log(userContextData)}>asdadsad</button> */}
         <Coachings />
         <div className={styles.searchCourse}>Search Course</div>
       </div>

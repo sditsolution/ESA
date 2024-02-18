@@ -2,6 +2,7 @@ var nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const azureKeyVault = require("./../azureKeyVault");
 
+//EMAIL Adress to send email to clients
 var transporter = nodemailer.createTransport({
   host: "mail.gmx.net",
   port: 587,

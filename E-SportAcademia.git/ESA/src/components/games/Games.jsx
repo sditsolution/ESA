@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
-import styles from "../../styles/coaching/Games.module.css";
+import styles from "../../styles/coaching/games.module.css";
 
-const Games = ({ img, name, numberCoaches }) => {
+const Games = ({ gameId, img, name, numberCoaches }) => {
   const navigation = useNavigate();
   function handleNavigation() {
     navigation(`/games/${name}`);
@@ -12,9 +12,9 @@ const Games = ({ img, name, numberCoaches }) => {
       <div className={styles.img}>
         <img src={img} alt={name} />
       </div>
-
-      <label style={{ fontWeight: "bold", fontSize: "1em" }}>{name}</label>
-      <label>coaches:{numberCoaches !== undefined ? 0 : numberCoaches} </label>
+      <div className={styles.content}>
+        <label style={{ fontWeight: "bold", fontSize: "1em" }}>{name}</label>
+      </div>
     </div>
   );
 };

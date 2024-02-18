@@ -9,70 +9,33 @@ import {
 } from "react-router-dom";
 import CoachView from "./CoachView.jsx";
 import "../../styles/app.css";
-import exampleImg from "../../assets/pictures/NowayExample.png";
 import styles from "../../styles/coachPages/allCoaches.module.css";
-import { IndeterminateCheckBox } from "@mui/icons-material";
-import searchBoxStyle from "../../styles/ui/searchbox.module.css";
-import ComboBox from "../../ui/ComboBox.jsx";
 import NoCoach from "./NoCoach.jsx";
+import Profilplaceholder from "../../assets/pictures/ProfilePlaceholder.png";
 
 const AllCoaches = ({ onHandleCoach, setCoach }) => {
   const [kategory, setKategory] = useState();
+  const [gameData, setGameData] = useState();
+  const [coaches, setCoaches] = useState();
   const [resultKategory, setResultKategory] = useState();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-
-  const coaches = [
-    {
-      id: 1,
-      name: "Noway4you",
-      game: "League of Legends",
-      img: exampleImg,
-    },
-    { id: 2, name: "Dennis", img: exampleImg, game: "World of Warcraft" },
-    { id: 3, name: "Luisa", img: exampleImg, game: "Clash of Clans" },
-    {
-      id: 4,
-      name: "Pascal",
-      img: exampleImg,
-      game: "Valorant",
-    },
-    { id: 6, name: "Marco", img: exampleImg, game: "World of Warcraft" },
-
-    { id: 7, name: "Marco", img: exampleImg, game: "World of Warcraft" },
-
-    { id: 8, name: "Marco", img: exampleImg, game: "World of Warcraft" },
-
-    { id: 9, name: "Marco", img: exampleImg, game: "World of Warcraft" },
-
-    { id: 10, name: "Marco", img: exampleImg, game: "World of Warcraft" },
-
-    { id: 11, name: "Marco", img: exampleImg, game: "World of Warcraft" },
-  ];
+  const [selection, setSelection] = useState();
 
   function handleCoachView(coach) {
-    navigate(`/coaches/${coach.name}`);
+    navigate(`/coaches/${coach.idcoach}`);
   }
-  function handleChange(event) {
-    setKategory(event);
-    if (event === "Valorant") {
-      setResultKategory(coaches.filter((c) => c.game === "Valorant"));
-    } else if (event === "All Games") {
-      setResultKategory(coaches);
-    } else if (event === "League of Legends") {
-      setResultKategory(coaches.filter((c) => c.game === "League of Legends"));
-    } else if (event === "World of Warcraft") {
-      setResultKategory(coaches.filter((c) => c.game === "World of Warcraft"));
-    } else if (event === "Clash of Clans") {
-      setResultKategory(coaches.filter((c) => c.game === "Clash of Clans"));
-    } else if (event === "Counter Strike 2") {
-      setResultKategory(coaches.filter((c) => c.game === "Counter Strike 2"));
-    } else if (event === "World of Tanks") {
-      setResultKategory(coaches.filter((c) => c.game === "World of Tanks"));
-    } else if (event === "Clash Royal") {
-      setResultKategory(coaches.filter((c) => c.game === "Clash Royal"));
-    }
-  }
+
+  const getCoaches = async () => {
+    const response = await fetch(`http://localhost:3001/getcoaches`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-cache",
+    });
+    const result = await response.json();
+    setCoaches(result);
+  };
+
   function handleSearch(e) {
     let filteredBySearch;
     e.preventDefault();
@@ -92,25 +55,13 @@ const AllCoaches = ({ onHandleCoach, setCoach }) => {
     if (resultKategory === undefined) {
       setResultKategory(coaches);
     }
+    getCoaches();
   }, [search, resultKategory]);
 
   return (
     <div className={styles.container}>
       <h1>Coaches</h1>
       <div className={styles.searchCoach}>
-        <select
-          className="combobox"
-          onChange={(e) => handleChange(e.target.value)}
-        >
-          <option value="All Games">All Games</option>
-          <option value="League of Legends">League of Legends</option>
-          <option value="Valorant">Valorant</option>
-          <option value="Clash of Clans">Clash of Clans</option>
-          <option value="Counter Strike 2">Counter Strike 2</option>
-          <option value="World of Warcraft">World of Warcarft</option>
-          <option value="World of Tanks">World of Tanks</option>
-          <option value="Clash of Clans">Clash Royal</option>
-        </select>
         <input
           className="searchbox"
           type="text"
@@ -121,17 +72,20 @@ const AllCoaches = ({ onHandleCoach, setCoach }) => {
       </div>
 
       <div className={styles.coachProfiles}>
-        {resultKategory !== undefined ? (
-          resultKategory.map((c) => (
-            <>
-              {" "}
-              <div
-                className={styles.coachViewContainer}
-                onClick={() => handleCoachView(c)}
-              >
-                <CoachView key={c.id} name={c.name} img={c.img} />
-              </div>
-            </>
+        {coaches !== undefined && coaches !== null ? (
+          coaches.map((c) => (
+            <div
+              className={styles.coachViewContainer}
+              onClick={() => handleCoachView(c)}
+              key={c.idcoach}
+            >
+              {/* Counter for subscriber */}
+              <CoachView
+                name={c.INGAMENAME}
+                img={c.IMAGE == null ? Profilplaceholder : c.IMAGE}
+                subs={0}
+              />
+            </div>
           ))
         ) : (
           <NoCoach />

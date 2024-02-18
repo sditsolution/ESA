@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 20rem;
+  width: 20rem;
+  border-bottom: 1px solid rgb(197, 196, 196);
+  background-color: white;
+  border-radius: 1rem;
+  margin: 1rem;
+}
+.headerContainer {
+  display: flex;
+  margin-left: 0.5rem;
+  height: 3rem;
+}
+.contentContainer {
+  display: flex;
+  align-items: flex-start;
+  height: 7rem;
+  width: 20rem;
+}
+.imgContainer {
+  height: 8rem;
+  width: 9rem;
+  margin: 0.5rem;
+}
+.imgContainer img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.coachingDetail {
+  display: flex;
+  flex-direction: column;
+  height: 10rem;
+}
+.coachingDetail li {
+  list-style-type: none;
+}
+.descriptionContainer {
+  margin: 0.5rem;
+  height: 8rem;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.5rem;
+}

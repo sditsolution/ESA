@@ -18,7 +18,8 @@ module.exports.postCreateCoaching = async (req, res, connection) => {
     userID,
   } = req.body;
   connection.query(
-    `INSERT INTO coaching (GAMEID,TITLE,DESCRIPTION,PRICE,PARTICIPANT,DATE,START,END,REVENUE,PAYMENTESA,MEDIA,COACHID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO coaching (GAMEID,TITLE,DESCRIPTION,PRICE,PARTICIPANT,DATE,START,END,REVENUE,PAYMENTESA,MEDIA,COACHID) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`,
     [
       gameIndex,
       title,
@@ -28,8 +29,8 @@ module.exports.postCreateCoaching = async (req, res, connection) => {
       date,
       start,
       end,
-      paymentESA,
       revenue,
+      paymentESA,
       media,
       userID,
     ],

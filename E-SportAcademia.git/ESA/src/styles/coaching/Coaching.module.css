@@ -5,10 +5,8 @@
 }
 .searchContainer {
   display: flex;
-  justify-content: space-around;
-  width: 30rem;
+  margin-left: 2rem;
   height: 3rem;
-  margin-left: 5rem;
 }
 .gamesContainer {
   display: flex;

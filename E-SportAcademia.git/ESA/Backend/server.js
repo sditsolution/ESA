@@ -8,6 +8,7 @@ const azureKeyVault = require("./azureKeyVault");
 const UserController = require("./Controller/userController");
 const mailController = require("./Controller/mailController");
 const CoachController = require("./Controller/coachController");
+const GameController = require("./Controller/gameController");
 
 const app = express();
 const port = 3001;
@@ -130,6 +131,19 @@ app.get("/verifyEmailChange", async (req, res) => {
   res.redirect(`http://localhost:3000/changeEmail/${token}`);
 });
 
+//Route Game
+app.get("/getGameKategory", async (req, res) => {
+  GameController.getGameKategory(req, res, connection);
+});
+app.get("/getcoaches", async (req, res) => {
+  GameController.getCoaches(req, res, connection);
+});
+app.get("/getgames", async (req, res) => {
+  GameController.getGames(req, res, connection);
+});
+app.post("/getCoachingData", async (req, res) => {
+  GameController.getCoaching(req, res, connection);
+});
 app.listen(port, () => {
   console.log(`Server läuft auf Port ${port}`);
 });

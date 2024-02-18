@@ -10,12 +10,7 @@ const CreateCourseForm = ({ onCloseModal, userID }) => {
   const inputFile = useRef(null);
   const [selectedGame, setSelectedGame] = useState(null);
   const [gameIndex, setGameIndex] = useState(0);
-  const gameOptions = [
-    "League",
-    "Counter Strike 2",
-    "Clash Royal",
-    "Clash of Clans",
-  ]; //TODO: AUS DATABASE HOLEN
+  const [games, setGames] = useState([0]);
   const [title, setTitle] = useState("");
   const [participant, setParticipant] = useState(0);
   const [price, setPrice] = useState(0);
@@ -92,7 +87,7 @@ const CreateCourseForm = ({ onCloseModal, userID }) => {
   const handleGameChange = (event) => {
     const selectedIndex = event.target.value;
     setGameIndex(selectedIndex);
-    setSelectedGame(gameOptions[selectedIndex]);
+    setSelectedGame(games[selectedIndex]);
   };
   function OpenFileDialog() {
     inputFile.current.click();
@@ -117,7 +112,15 @@ const CreateCourseForm = ({ onCloseModal, userID }) => {
       setIsDisabled(false);
     }
   }
-
+  const getGames = async () => {
+    const response = await fetch(`http://localhost:3001/getgames`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-cache",
+    });
+    const result = await response.json();
+    setGames(result);
+  };
   const insertCoaching = async () => {
     return await fetch(`http://localhost:3001/createCoaching`, {
       method: "POST",
@@ -149,22 +152,28 @@ const CreateCourseForm = ({ onCloseModal, userID }) => {
       })
       .catch((error) => toast.error("Failed update account settings"));
   };
-  useEffect(function () {
-    Calculation();
-    createCoaching();
-  });
+
+  useEffect(
+    function () {
+      Calculation();
+      createCoaching();
+      getGames();
+    },
+    [price, participant]
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
         <h2>Create your coaching in</h2>
         <select
           onChange={handleGameChange}
-          value={selectedGame !== null ? gameOptions.indexOf(selectedGame) : ""}
+          value={selectedGame !== null ? games.indexOf(selectedGame) : ""}
           className={styles.selection}
         >
-          {gameOptions.map((game, index) => (
-            <option key={index} value={index}>
-              {game}
+          {games.map((game) => (
+            <option key={game.idgame} value={game.idgame}>
+              {game.NAME}
             </option>
           ))}
         </select>
