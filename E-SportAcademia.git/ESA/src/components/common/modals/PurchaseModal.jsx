@@ -10,7 +10,6 @@ const StyledModal = styled.div`
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 1rem;
-  padding: 3.2rem 4rem;
   transition: all 0.5s;
   border: 1px solid rgb(197, 196, 196);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -47,7 +46,7 @@ const Button = styled.button`
   }
 `;
 
-const Modal = ({ children, onClose }) => {
+const PurchaseModal = ({ children, onClose }) => {
   return (
     <OverLay>
       <StyledModal>
@@ -60,4 +59,4 @@ const Modal = ({ children, onClose }) => {
   );
 };
 
-export default Modal;
+export default PurchaseModal;

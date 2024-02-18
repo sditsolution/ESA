@@ -9,6 +9,7 @@ const UserController = require("./Controller/userController");
 const mailController = require("./Controller/mailController");
 const CoachController = require("./Controller/coachController");
 const GameController = require("./Controller/gameController");
+const CoachingController = require("./Controller/coachingController");
 
 const app = express();
 const port = 3001;
@@ -144,6 +145,11 @@ app.get("/getgames", async (req, res) => {
 app.post("/getCoachingData", async (req, res) => {
   GameController.getCoaching(req, res, connection);
 });
+//Route Coaching
+app.post("/postbookCoaching", async (req, res) => {
+  CoachingController.postBookCoaching(req, res, connection);
+});
+
 app.listen(port, () => {
   console.log(`Server läuft auf Port ${port}`);
 });

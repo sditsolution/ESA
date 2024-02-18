@@ -17,13 +17,20 @@ const Coaching = ({ onHandleNavigation }) => {
   let allIndex;
 
   const getGames = async () => {
-    const response = await fetch(`http://localhost:3001/getGames`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      cache: "no-cache",
-    });
-    const result = await response.json();
-    setGamesData(result);
+    try {
+      const response = await fetch(`http://localhost:3001/getGames`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        cache: "no-cache",
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      setGamesData(result);
+    } catch (error) {
+      console.error("Fehler beim Fetchen der Spiele:", error);
+    }
   };
   function getSelection(result) {
     //set for unique items

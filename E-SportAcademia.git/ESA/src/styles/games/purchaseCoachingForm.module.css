@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 35rem;
+  width: 75rem;
+}
+.receiptContainer {
+  width: 37.5rem;
+  height: 35rem;
+}
+.overview {
+  width: 37.5rem;
+  height: 35rem;
+}

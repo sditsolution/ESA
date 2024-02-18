@@ -31,6 +31,8 @@ const SelectedGame = () => {
           coaching.map((c) => (
             <CoachingCard
               key={c.idcoaching}
+              coachingid={c.idcoaching}
+              coachid={c.idcoach}
               title={c.TITLE}
               img={c.IMG}
               coach={c.INGAMENAME}
@@ -38,7 +40,7 @@ const SelectedGame = () => {
               start={c.START}
               end={c.END}
               participant={c.PARTICIPANT}
-              bookedparticipant={c.BOOKEDPARTICIPANT}
+              bookedparticipant={c.BOOKEDPATICIPANT}
               price={c.PRICE}
               description={c.DESCRIPTION}
             />

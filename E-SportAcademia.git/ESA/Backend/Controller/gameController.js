@@ -40,7 +40,7 @@ module.exports.getGames = async (req, res, connection) => {
 module.exports.getCoaching = async (req, res, connection) => {
   const { gameid } = req.body.game;
   connection.query(
-    `SELECT coaching.idcoaching,coaching.TITLE,coaching.DESCRIPTION,coaching.DATE,coaching.START,coaching.END,coaching.IMAGE,coaching.BOOKEDPATICIPANT,coaching.PARTICIPANT, coaching.PRICE, user.INGAMENAME 
+    `SELECT coaching.idcoaching,coach.idcoach,coaching.TITLE,coaching.DESCRIPTION,coaching.DATE,coaching.START,coaching.END,coaching.IMAGE,coaching.BOOKEDPATICIPANT,coaching.PARTICIPANT, coaching.PRICE, user.INGAMENAME 
     FROM game, coaching, coach,user 
     WHERE coaching.GAMEID = game.idgame 
     AND coaching.COACHID = coach.idcoach
