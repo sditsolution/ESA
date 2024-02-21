@@ -92,7 +92,7 @@ const MyCourses = ({ coachID }) => {
                   <td className={styles.th}>{c.MEDIA}</td>
                   <td className={styles.th}>{c.PRICE} €</td>
                   <td className={styles.th}>
-                    {c.BOOKEDPARTICIPANT == null ? 0 : c.BOOKEDPARTICIPANT}/
+                    {c.BOOKEDPATICIPANT == null ? 0 : c.BOOKEDPATICIPANT}/
                     {c.PARTICIPANT}
                   </td>
                   <td className={styles.th}>

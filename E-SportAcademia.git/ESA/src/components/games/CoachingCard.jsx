@@ -71,6 +71,12 @@ const CoachingCard = ({
         <PurchaseModal onClose={() => setIsModalOpen(false)}>
           <PurchaseCoachingForm
             coachingid={coachingid}
+            title={title}
+            price={price}
+            date={date}
+            start={start}
+            end={end}
+            img={img == null ? imgPlaceholder : img}
             onCloseModal={() => setIsModalOpen(false)}
           />
         </PurchaseModal>

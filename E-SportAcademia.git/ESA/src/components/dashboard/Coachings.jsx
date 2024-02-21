@@ -1,22 +1,22 @@
-import React, { Fragment } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/dashboard/Coachings.module.css";
 
 const Coachings = () => {
   // Api call mit allen Terminen die man gebucht hat
-  const appointments = [
-    {
-      id: 1,
-      img: "../assets/pictures/NowayExample.png",
-      coach: "Noway4you",
-      Coursename: "Lasthitting",
-      Date: "19.09.2034",
-      Start: "17:00",
-      End: "19:00",
-      Media: "Zoom",
-      Price: 50,
-    },
-  ];
+  const [bookedCoaching, setBookedCoaching] = useState([]);
 
+  const getMyBookedCoaching = async () => {
+    const response = await fetch(`http://localhost:3001/getbookedCoaching`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      cache: "no-cache",
+    });
+    const result = await response.json();
+    setBookedCoaching(result);
+  };
+  useEffect(() => {
+    getMyBookedCoaching();
+  }, []);
   return (
     <div className={styles.container}>
       <table>

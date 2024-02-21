@@ -27,8 +27,13 @@ module.exports.postBookCoaching = async (req, res, connection) => {
               }
             }
           );
+        } else {
+          res.status(500).json({ serverStatus: -2 });
         }
       }
     }
   );
+};
+module.exports.getBookedCoaching = async (req, res, connection) => {
+  connection.query(`SELECT * from coaching WHERE `);
 };

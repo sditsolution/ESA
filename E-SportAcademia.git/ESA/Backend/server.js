@@ -145,9 +145,13 @@ app.get("/getgames", async (req, res) => {
 app.post("/getCoachingData", async (req, res) => {
   GameController.getCoaching(req, res, connection);
 });
+
 //Route Coaching
 app.post("/postbookCoaching", async (req, res) => {
   CoachingController.postBookCoaching(req, res, connection);
+});
+app.get("/getbookedCoaching", async (req, res) => {
+  CoachingController.getBookedCoaching(req, res, connection);
 });
 
 app.listen(port, () => {

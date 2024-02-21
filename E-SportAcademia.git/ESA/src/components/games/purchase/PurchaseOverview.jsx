@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../../../styles/games/purchaseOverview.module.css";
 import toast from "react-hot-toast";
 
-const PurchaseOverview = ({ coachingid, onCloseModal }) => {
+const PurchaseOverview = ({ coachingid, onCloseModal, price }) => {
   const bookCoaching = async () => {
     return await fetch(`http://localhost:3001/postbookCoaching`, {
       method: "POST",
@@ -15,7 +15,7 @@ const PurchaseOverview = ({ coachingid, onCloseModal }) => {
         toast.success("Successfully booked coaching");
         onCloseModal();
       } else {
-        toast.error("Unable to book the coaching");
+        toast.error("Unable to book the coaching. Coaching is sold out");
         onCloseModal();
       }
     });
@@ -29,14 +29,14 @@ const PurchaseOverview = ({ coachingid, onCloseModal }) => {
       <div className={styles.contentContainer}>
         <div className={styles.rowContainer}>
           <p>Price:</p>
-          <p>50 €</p>
+          <p>{price} €</p>
         </div>
         <div className={styles.rowContainer}>
           <p>
             <b>Total:</b>
           </p>
           <p>
-            <b>50 €</b>
+            <b>{price} €</b>
           </p>
         </div>
         <div className={styles.rowContainer}>

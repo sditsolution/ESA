@@ -45,6 +45,7 @@ module.exports.getCoaching = async (req, res, connection) => {
     WHERE coaching.GAMEID = game.idgame 
     AND coaching.COACHID = coach.idcoach
     AND coach.USERID = user.USER_ID
+    AND coaching.BOOKEDPATICIPANT != coaching.PARTICIPANT
     AND game.NAME=?`,
     [gameid],
     (error, result) => {
