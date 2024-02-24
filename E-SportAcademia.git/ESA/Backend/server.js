@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const azureKeyVault = require("./azureKeyVault");
+const cors = require("cors");
 
 const UserController = require("./Controller/userController");
 const mailController = require("./Controller/mailController");
@@ -33,6 +34,13 @@ app.use(function (req, res, next) {
 app.use(express.json());
 app.use(bodyParser.json());
 
+const corsOptions = {
+  origin: "http://localhost:3000/login",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors());
+
 //app.use(bodyParser.json());
 app.set("etag", false);
 
@@ -46,7 +54,7 @@ connection.connect((err) => {
 });
 
 //Route User
-app.get("/getUser", async (req, res) => {
+app.post("/getUser", async (req, res) => {
   UserController.getUser(req, res, connection);
 });
 app.post("/signIn", async (req, res) => {
@@ -150,7 +158,7 @@ app.post("/getCoachingData", async (req, res) => {
 app.post("/postbookCoaching", async (req, res) => {
   CoachingController.postBookCoaching(req, res, connection);
 });
-app.get("/getbookedCoaching", async (req, res) => {
+app.post("/getbookedCoaching", async (req, res) => {
   CoachingController.getBookedCoaching(req, res, connection);
 });
 

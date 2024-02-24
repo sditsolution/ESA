@@ -38,10 +38,9 @@ const Settings = () => {
   };
 
   useEffect(() => {
-    const userDataString = localStorage.getItem("userContext");
-    if (userDataString) {
-      const parsedUserData = JSON.parse(userDataString);
-      setUserData(parsedUserData);
+    const userDataString = localStorage.getItem("user");
+    if (userDataString !== undefined) {
+      setUserData(JSON.parse(userDataString));
     }
     getCredentials();
   }, []);

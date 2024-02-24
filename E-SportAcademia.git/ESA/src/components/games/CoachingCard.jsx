@@ -23,6 +23,7 @@ const CoachingCard = ({
   coachingid,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState();
+  const [isMyCoaching, setIsMyCoaching] = useState();
   const navigate = useNavigate();
   function directCoach() {
     navigate(`/coaches/${coachid}`);
@@ -60,12 +61,19 @@ const CoachingCard = ({
         <p>{description}</p>
       </div>
       <div className={styles.buttonContainer}>
-        <button className="secondaryBtn" onClick={() => directCoach()}>
-          View Coach
-        </button>
-        <button className="primaryBtn" onClick={() => setIsModalOpen(true)}>
-          Book now
-        </button>
+        {isMyCoaching ? (
+          <>
+            <button className="secondaryBtn" onClick={() => directCoach()}>
+              View Coach
+            </button>
+
+            <button className="primaryBtn" onClick={() => setIsModalOpen(true)}>
+              Book now
+            </button>
+          </>
+        ) : (
+          ""
+        )}
       </div>
       {isModalOpen && (
         <PurchaseModal onClose={() => setIsModalOpen(false)}>

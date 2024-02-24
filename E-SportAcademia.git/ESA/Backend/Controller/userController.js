@@ -1,26 +1,92 @@
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 const jwt = require("jsonwebtoken");
 const azureKeyVault = require("./../azureKeyVault");
 
+// module.exports.getUser = async (req, res, connection) => {
+//   const { email } = req.query;
+//   const { frontendPassword } = req.body;
+//   let checkPw = false;
+//   connection.query(
+//     "SELECT PASSWORD,AUTHORZIED,USER_ID,PASSWORD,USERCREDENTIAL,INGAMENAME, LASTNAME,NAME  FROM user WHERE EMAIL =?",
+//     [email],
+//     (err, result) => {
+//       if (err) {
+//         console.error("Fehler bei der MySQL-Abfrage: ", err);
+//         res.status(500).send("Fehler beim Abrufen der Benutzerdaten");
+//       } else {
+//         const rawdata = result[0];
+//         // Umwandeln des RowDataPacket-Objekts in ein JSON-Objekt
+//         const data = { ...rawdata };
+//         const { PASSWORD: pw } = data;
+//         bcrypt.compare(frontendPassword, pw, function (err, isMatch) {
+//           if (err) {
+//             console.error("Fehler bei der Passwortüberprüfung:", err);
+//           } else if (isMatch) {
+//             checkPw = true;
+//           } else {
+//             checkPw = false;
+//           }
+//         });
+//         if (checkPw) {
+//           res.status(200).send(data);
+//         } else {
+//           res.sendStatus(500);
+//         }
+//       }
+//     }
+//   );
+// };
 module.exports.getUser = async (req, res, connection) => {
   const { email } = req.query;
-  connection.query(
-    "SELECT EMAIL,INGAMENAME,NAME,LASTNAME,PASSWORD,AUTHORZIED,USERCREDENTIAL,USER_ID, coach.idcoach FROM user, coach WHERE user.USER_ID = coach.USERID AND EMAIL =?",
-    [email],
-    (err, result) => {
-      if (err) {
-        console.error("Fehler bei der MySQL-Abfrage: ", err);
-        res.status(500).send("Fehler beim Abrufen der Benutzerdaten");
-      } else {
-        const rawdata = result[0];
-        // Umwandeln des RowDataPacket-Objekts in ein JSON-Objekt
-        const data = { ...rawdata };
-        res.status(200).send(data);
-      }
+  const { frontendPassword } = req.body;
+
+  try {
+    const result = await queryUserByEmail(connection, email);
+    const rawdata = result[0];
+    const data = { ...rawdata };
+    const { PASSWORD: pw } = data;
+
+    const isMatch = await comparePasswords(frontendPassword, pw);
+
+    if (isMatch) {
+      res.status(200).send(data);
+    } else {
+      res.status(500).send({ serverStatus: -1 });
     }
-  );
+  } catch (err) {
+    console.error("Fehler bei der Abfrage: ", err);
+    res.status(500).send("Fehler beim Abrufen der Benutzerdaten");
+  }
 };
+async function queryUserByEmail(connection, email) {
+  return new Promise((resolve, reject) => {
+    //reference to coach because of coachid in beACoach component
+    connection.query(
+      "SELECT PASSWORD,AUTHORZIED,USER_ID,PASSWORD,USERCREDENTIAL,INGAMENAME, LASTNAME,NAME, coach.idcoach FROM user, coach WHERE user.USER_ID = coach.USERID AND EMAIL =?",
+      [email],
+      (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      }
+    );
+  });
+}
+async function comparePasswords(plainPassword, hashedPassword) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(plainPassword, hashedPassword, (err, isMatch) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(isMatch);
+      }
+    });
+  });
+}
 module.exports.postSignIn = async (req, res, connection) => {
   const { firstName, lastName, inGameName, email, cryptedPassword, auth } =
     req.body;

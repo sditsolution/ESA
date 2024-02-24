@@ -20,7 +20,7 @@ const AddCourse = ({ userID }) => {
         className={styles.createCourseBtn}
         onClick={() => setIsOpenModal((isOpenModal) => !isOpenModal)}
       >
-        Create Course
+        Create Coaching
       </button>
       {isOpenModal && (
         <Modal onClose={() => setIsOpenModal(false)}>

@@ -1,5 +1,3 @@
-const { connection } = require("mongoose");
-
 require("dotenv").config();
 
 module.exports.postCreateCoaching = async (req, res, connection) => {
@@ -17,9 +15,23 @@ module.exports.postCreateCoaching = async (req, res, connection) => {
     media,
     userID,
   } = req.body;
+
   connection.query(
-    `INSERT INTO coaching (GAMEID,TITLE,DESCRIPTION,PRICE,PARTICIPANT,DATE,START,END,REVENUE,PAYMENTESA,MEDIA,BOOKEDPATICIPANT,COACHID) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO coaching 
+    (GAMEID,
+      TITLE,
+      DESCRIPTION,
+      PRICE,
+      PARTICIPANT,
+      DATE,
+      START,
+      END,
+      REVENUE,
+      PAYMENTESA,
+      MEDIA,
+      BOOKEDPATICIPANT,
+      COACHID) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,
     [
       gameIndex,
       title,
@@ -48,7 +60,7 @@ module.exports.postCreateCoaching = async (req, res, connection) => {
 module.exports.getCoaching = async (req, res, connection) => {
   const { userID } = req.query;
   connection.query(
-    `SELECT * from coaching WHERE COACHID=?`,
+    `SELECT * from coaching, game WHERE game.idgame = coaching.GAMEID AND COACHID=?`,
     [userID],
     (error, result) => {
       if (error) {

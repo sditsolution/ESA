@@ -20,34 +20,23 @@ import Course from "./components/coaching/Course.jsx";
 import Verification from "./pages/Verification.jsx";
 import FailedVerification from "./pages/FailedVerification.jsx";
 import ChangeEmail from "./pages/ChangeEmail.jsx";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useNavigate } from "react";
 export const UserContext = createContext(null);
 
 function App() {
-  const [userContext, setUserContext] = useState(null);
-  const loginUser = async (userData) => {
-    // Hier holst du den Benutzer aus der Datenbank und setzt ihn im Kontext
-    // Beispiel: const user = await fetchUserFromDatabase(userData);
-    setUserContext(userData);
+  const [userContext, setUserContext] = useState();
 
-    // Speichere den Benutzerkontext im lokalen Speicher
-    localStorage.setItem("userContext", JSON.stringify(userData));
-  };
+  const loginUser = async (email, frontendPassword) => {};
+
   const logoutUser = () => {
     // Hier kannst du den Benutzer ausloggen und den Kontext zurücksetzen
     setUserContext(null);
-
     // Entferne den Benutzerkontext aus dem lokalen Speicher
-    localStorage.removeItem("userContext");
+    localStorage.removeItem("user");
     //history.push("/login");
   };
-
   useEffect(() => {
     // Versuche, den Benutzerkontext aus dem lokalen Speicher zu laden
-    const storedUserContext = localStorage.getItem("userContext");
-    if (storedUserContext) {
-      setUserContext(JSON.parse(storedUserContext));
-    }
   }, []);
 
   const queryClient = new QueryClient({

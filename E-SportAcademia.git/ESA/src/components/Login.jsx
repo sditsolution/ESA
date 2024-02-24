@@ -2,83 +2,91 @@ import styles from "../styles/Login.module.css";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
-import bcrypt from "bcryptjs";
 import toast, { Toaster } from "react-hot-toast";
 import { UserContext } from "./../App.jsx";
 
 const Login = () => {
-  const { loginUser } = useContext(UserContext);
-
   const navigate = useNavigate();
+  const { loginUser, logoutUser } = useContext(UserContext);
   const [isLoggedIn, setLoggedIn] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  function CheckAuth(authStatus) {
-    if (authStatus) {
-      return true;
-    } else {
-      toast.error("Email is not verified");
-      return false;
-    }
-  }
+  const [userData, setUserData] = useState();
+  const [userContext, setUserContext] = useState();
 
   const getUserData = async () => {
     try {
-      return await fetch(`http://localhost:3001/getUser?email=${email}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        cache: "no-cache",
-      })
-        .then((res) => res.json())
-        .then((backendData) => {
-          const { PASSWORD: passwordBackend, AUTHORZIED: auth } = backendData;
-          let pass = passwordBackend;
+      const response = await fetch(
+        `http://localhost:3001/getUser?email=${email}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          cache: "no-cache",
+          body: JSON.stringify({
+            frontendPassword: password,
+          }),
+        }
+      );
 
-          if (CheckAuth(auth)) {
-            loginUser(backendData);
-            console.log(backendData);
-            navigate("/dashboard");
-            // console.log(data);
-          }
-          if (CheckPassword(pass)) {
-            //TODO: Check password from backend and navigate afterwards
-            console.log("right Password");
-          }
-        });
+      let backendData;
+
+      if (response.status === 401) {
+        // Anmeldeinformationen ungültig
+        setUserContext(null);
+        toast.error("Wrong email or password ");
+        return;
+      }
+
+      if (!response.ok) {
+        console.error("Fehler");
+        toast.error("An error occurred while logging in");
+        return;
+      }
+
+      try {
+        backendData = await response.json();
+      } catch (jsonError) {
+        console.error("Fehler beim Analysieren der JSON-Antwort:", jsonError);
+        toast.error("An error occurred while parsing the server response");
+        return;
+      }
+
+      const { AUTHORZIED: auth } = backendData;
+
+      if (CheckAuth(auth)) {
+        setUserContext(backendData);
+        localStorage.setItem("user", JSON.stringify(backendData));
+        navigate("/dashboard");
+      } else {
+        setUserContext(null);
+        toast.error("Authentication failed");
+      }
     } catch (error) {
       console.error("Fehler beim Abrufen der Benutzerdaten:", error);
-      throw error;
+      toast.error("An error occurred while fetching user data");
     }
   };
-
+  function CheckAuth(authStatus) {
+    if (authStatus === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   function handleEmailChange(event) {
     setEmail(event.target.value);
   }
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
-  function CheckPassword(backendPassword) {
-    bcrypt.compare(password, backendPassword, function (err, isMatch) {
-      if (err) {
-        console.error("Fehler bei der Passwortüberprüfung:", err);
-      } else if (isMatch) {
-        return true;
-      } else {
-        toast.error("Email or password are incorrect!");
-        return false;
-      }
-    });
-  }
-
-  function CheckLoginData() {
-    getUserData();
-  }
-
-  useEffect(() => {}, [email]);
-
+  useEffect(() => {
+    const userDataString = localStorage.getItem("user");
+    if (userDataString !== undefined) {
+      setUserData(JSON.parse(userDataString));
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.containerLayout}>
@@ -114,7 +122,7 @@ const Login = () => {
                 Email or password are incorrect
               </label>
             )}
-            <button className="primaryBtn" onClick={() => CheckLoginData()}>
+            <button className="primaryBtn" onClick={() => getUserData()}>
               Login
             </button>
           </div>

@@ -8,8 +8,8 @@ import toast from "react-hot-toast";
 
 const CreateCourseForm = ({ onCloseModal, userID }) => {
   const inputFile = useRef(null);
-  const [selectedGame, setSelectedGame] = useState(null);
-  const [gameIndex, setGameIndex] = useState(0);
+  const [selectedGame, setSelectedGame] = useState(1);
+  const [gameIndex, setGameIndex] = useState(1);
   const [games, setGames] = useState([0]);
   const [title, setTitle] = useState("");
   const [participant, setParticipant] = useState(0);
@@ -86,6 +86,7 @@ const CreateCourseForm = ({ onCloseModal, userID }) => {
   }
   const handleGameChange = (event) => {
     const selectedIndex = event.target.value;
+    console.log(selectedIndex);
     setGameIndex(selectedIndex);
     setSelectedGame(games[selectedIndex]);
   };
@@ -159,7 +160,7 @@ const CreateCourseForm = ({ onCloseModal, userID }) => {
       createCoaching();
       getGames();
     },
-    [price, participant]
+    [price, participant, description]
   );
 
   return (
