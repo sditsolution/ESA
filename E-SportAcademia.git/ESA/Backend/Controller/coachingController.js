@@ -37,13 +37,13 @@ module.exports.postBookCoaching = async (req, res, connection) => {
 module.exports.getBookedCoaching = async (req, res, connection) => {
   const { USER_ID } = req.body;
   connection.query(
-    `SELECT user.INGAMENAME, coaching.TITLE, coaching.DATE, 
-  coaching.START, coaching.END,coaching.DESCRIPTION, coaching.MEDIA, coaching.IMAGE, game.NAME 
-  FROM user, coaching, coach, coachinguser, game 
-  WHERE user.USER_ID = coachinguser.USERID  
-  AND coaching.gameid = game.idgame
-  and coaching.idcoaching = coachinguser.COACHINGID 
-  AND coachinguser.userid=? `,
+    `SELECT coaching.idcoaching,game.IMAGE,user.INGAMENAME, coaching.TITLE, coaching.DATE, 
+    coaching.START, coaching.END,coaching.DESCRIPTION, coaching.MEDIA, game.NAME 
+    FROM user, coaching, coach, coachinguser, game 
+    WHERE user.USER_ID = coachinguser.USERID  
+    AND coaching.gameid = game.idgame
+    and coaching.idcoaching = coachinguser.COACHINGID 
+    AND coachinguser.userid=? `,
     [USER_ID],
     (error, result) => {
       if (error) {

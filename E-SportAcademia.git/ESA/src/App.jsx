@@ -21,6 +21,8 @@ import Verification from "./pages/Verification.jsx";
 import FailedVerification from "./pages/FailedVerification.jsx";
 import ChangeEmail from "./pages/ChangeEmail.jsx";
 import { createContext, useState, useEffect, useNavigate } from "react";
+import Profile from "./components/beACoach/Profile.jsx";
+import CoachingOverview from "./components/beACoach/CoachingOverview.jsx";
 export const UserContext = createContext(null);
 
 function App() {
@@ -72,7 +74,9 @@ function App() {
               <Route path="coaches/:coachname" element={<Coach />} />
               <Route path="coaches/:coachname/courses" element={<Course />} />
               <Route path="history" element={<History />} />
-              <Route path="coaching" element={<BeACoach />} />
+              <Route path="coaching" element={<CoachingOverview />} />
+              <Route path="myCoachings" element={<BeACoach />} />
+              <Route path="profile" element={<Profile />} />
               <Route path="/settings/:credential" element={<Settings />} />
               <Route path="impressum" element={<Impressum />} />
             </Route>

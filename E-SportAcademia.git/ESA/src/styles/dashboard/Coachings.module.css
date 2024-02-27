@@ -23,16 +23,17 @@
 .content {
   overflow-y: scroll;
   align-items: center;
-  height: 25rem;
+  height: 23rem;
   margin-bottom: 1rem;
 }
 .th {
-  width: 11rem;
-  height: 3rem;
+  width: 10rem;
+  text-align: center;
+  vertical-align: middle;
 }
-.actionContainer {
-  display: flex;
-  width: 5rem;
-  height: 3rem;
-  justify-content: space-around;
+.th div img {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
 }

@@ -17,3 +17,16 @@
   border-radius: 5px;
   padding: 10px 10px;
 }
+.subnav {
+  display: flex;
+  align-items: flex-end;
+  font-size: 1.2em;
+  padding: 3px 3px;
+  cursor: pointer;
+  margin-left: 2rem;
+}
+.subnav:hover {
+  background-color: #f2f2f8;
+  border-radius: 5px;
+  padding: 3px 3px;
+}

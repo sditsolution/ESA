@@ -12,9 +12,18 @@ import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 const MainNav = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState();
+  const [isOpenCoaching, setIsOpenCoaching] = useState(false);
 
   function NavigateToSetting() {
     navigate(`/settings/${userData.USERCREDENTIAL}`);
+  }
+  function OpenCoaching() {
+    if (isOpenCoaching) {
+      setIsOpenCoaching(false);
+    } else {
+      navigate("/coaching");
+      setIsOpenCoaching(true);
+    }
   }
   useEffect(() => {
     const userDataString = localStorage.getItem("user");
@@ -70,10 +79,10 @@ const MainNav = () => {
           </div>
         </li>
         <li>
-          <div className={styles.nav} onClick={() => navigate("/coaching")}>
+          <div className={styles.nav} onClick={OpenCoaching}>
             <HiOutlineIdentification />
             <NavLink
-              to="/dashboard"
+              to="/coaching"
               style={{
                 textDecoration: "none",
                 color: "black",
@@ -83,6 +92,42 @@ const MainNav = () => {
               Coaching
             </NavLink>
           </div>
+          {isOpenCoaching ? (
+            <>
+              <div
+                className={styles.subnav}
+                onClick={() => navigate("/myCoachings")}
+              >
+                <NavLink
+                  to="/coaching"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    marginLeft: "1rem",
+                  }}
+                >
+                  <p style={{ fontSize: "0.75em" }}>My coachings</p>
+                </NavLink>
+              </div>
+              <div
+                className={styles.subnav}
+                onClick={() => navigate("/profile")}
+              >
+                <NavLink
+                  to="/coaching"
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    marginLeft: "1rem",
+                  }}
+                >
+                  <p style={{ fontSize: "0.75em" }}>Profile</p>
+                </NavLink>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
         </li>
         <li>
           <div className={styles.nav} onClick={() => NavigateToSetting()}>
