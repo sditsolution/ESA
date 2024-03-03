@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  height: 20rem;
+  width: 25rem;
+  border-radius: 1.125rem;
+  border: 1px solid rgb(197, 196, 196);
+  overflow: hidden;
+}
+.headerContainer {
+  background-color: white;
+  height: 3rem;
+}
+.headerContainer h3 {
+  margin-left: 1rem;
+}
+.gameSelection {
+  display: flex;
+  margin-top: 0.5rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.coachGames {
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+  margin-top: 1rem;
+  overflow-y: scroll;
+}
+.coachGames::before {
+  content: "";
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: white; /* Farbe des Strichs */
+}
+.socialsContainer {
+  display: flex;
+  flex-direction: column;
+  height: 17rem;
+}

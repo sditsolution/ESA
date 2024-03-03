@@ -1,47 +1,16 @@
 .container {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-.gameContainer {
-  display: flex;
+  height: 77rem;
   flex-direction: column;
-  margin-top: 2rem;
-  height: 20rem;
-  width: 25rem;
-  border-radius: 1.125rem;
-  border: 1px solid rgb(197, 196, 196);
-  overflow: hidden;
-}
-.headerContainer {
-  background-color: white;
-  height: 3rem;
-}
-.headerContainer h3 {
-  margin-left: 1rem;
-}
-.selection {
-  width: 10rem;
-  height: 2rem;
-  margin-left: 1rem;
-}
-.gameSelection {
-  display: flex;
-  margin-top: 0.5rem;
-  height: 3rem;
-  align-items: center;
   justify-content: space-around;
 }
-.selectionContainer {
+.helpContainer {
   display: flex;
-  width: 13rem;
-  align-items: center;
+  justify-content: flex-end;
 }
-.addSelection:hover {
-  background-color: blue;
-  cursor: pointer;
-}
-.inputRank {
-  height: 1.75rem;
-  border-radius: 0.5rem;
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 20rem;
+  margin-right: 25rem;
 }

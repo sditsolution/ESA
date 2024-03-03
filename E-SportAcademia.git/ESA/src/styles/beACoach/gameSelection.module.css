@@ -1,0 +1,26 @@
+.selectionContainer {
+  display: flex;
+  width: 13rem;
+  align-items: center;
+}
+.addSelection:hover {
+  background-color: rgb(202, 202, 202);
+  border-radius: 1000rem;
+  cursor: pointer;
+}
+.inputRank {
+  height: 1.75rem;
+  border-radius: 0.5rem;
+  border-color: white;
+}
+.inputRank::placeholder {
+  font-size: 1.2em;
+  text-align: left;
+  margin-left: 0;
+  padding-left: 0;
+}
+.selection {
+  width: 10rem;
+  height: 2rem;
+  margin-left: 1rem;
+}
