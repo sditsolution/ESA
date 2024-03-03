@@ -1,4 +1,4 @@
-let mysql = require("mysql");
+let mysql = require("mysql2");
 
 const express = require("express");
 const bodyParser = require("body-parser");
