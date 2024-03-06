@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  height: 20rem;
+  width: 25rem;
+  border-radius: 1.125rem;
+  border: 1px solid rgb(197, 196, 196);
+  overflow: hidden;
+}
+.headerContainer {
+  background-color: white;
+  height: 3rem;
+}
+.headerContainer h3 {
+  margin-left: 1rem;
+}
+.inputText {
+  resize: none;
+  height: 20rem;
+  width: 25rem;
+}

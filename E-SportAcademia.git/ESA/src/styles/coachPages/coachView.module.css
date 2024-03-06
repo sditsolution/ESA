@@ -5,17 +5,20 @@
   height: 15rem;
   width: 12rem;
   border-radius: 1rem;
-  justify-content: space-between;
+  justify-content: space-around;
   transition: transform 0.4s;
   background-color: white;
 }
 .container:hover {
   transform: scale(1.05); /* Ändere den Wert, um die Vergrößerung anzupassen */
 }
+.picture {
+  height: 11rem;
+}
 .content {
   display: flex;
   flex-direction: column;
-  height: 3rem;
+  height: 4rem;
   margin-left: 1rem;
 }
 .content p {

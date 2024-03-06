@@ -38,7 +38,7 @@ module.exports.getBookedCoaching = async (req, res, connection) => {
   const { USER_ID } = req.body;
   connection.query(
     `SELECT coaching.idcoaching,game.IMAGE,user.INGAMENAME, coaching.TITLE, coaching.DATE, 
-    coaching.START, coaching.END,coaching.DESCRIPTION, coaching.MEDIA, game.NAME 
+    coaching.START, coaching.END,coaching.DESCRIPTION, coaching.MEDIA,coaching.PRICE, game.NAME 
     FROM user, coaching, coach, coachinguser, game 
     WHERE user.USER_ID = coachinguser.USERID  
     AND coaching.gameid = game.idgame

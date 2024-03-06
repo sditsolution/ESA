@@ -8,6 +8,27 @@ import styles from "../../../../styles/beACoach/profile/gameLink.module.css";
 const GameLink = () => {
   const [coachGames, setCoachGames] = useState([]);
   const [isSelected, setIsSelected] = useState();
+
+  const [twitch, setTwitch] = useState();
+  const [instagram, setInstagram] = useState();
+  const [youtube, setYoutube] = useState();
+  const [tikTok, setTiktok] = useState();
+  const [x, setX] = useState();
+
+  function handleSocials(event) {
+    if (event.name === "Twitch") {
+      setTwitch(event.value);
+    } else if (event.name === "Instagram") {
+      setInstagram(event.value);
+    } else if (event.name === "Youtube") {
+      setYoutube(event.value);
+    } else if (event.name === "TikTok") {
+      setTiktok(event.value);
+    } else if (event.name === "X") {
+      setX(event.value);
+    }
+  }
+  useEffect(() => {}, [twitch, instagram, youtube, tikTok, x]);
   return (
     <div className={styles.container}>
       <div className={styles.gameContainer}>
@@ -35,10 +56,19 @@ const GameLink = () => {
           <h3>Links and socials</h3>
         </div>
         <div className={styles.socialsContainer}>
-          <Socials name="Twitch" link="www.hallo.de" />
-          <Socials name="Youtube" link="www.hallo.de" />
-          <Socials name="Instagram" link="www.hallo.de" />
-          <Socials name="TikTok" link="www.hallo.de" />
+          <Socials name="Twitch" link="www.hallo.de" setInput={handleSocials} />
+          <Socials
+            name="Youtube"
+            link="www.hallo.de"
+            setInput={handleSocials}
+          />
+          <Socials
+            name="Instagram"
+            link="www.hallo.de"
+            setInput={handleSocials}
+          />
+          <Socials name="TikTok" link="www.hallo.de" setInput={handleSocials} />
+          <Socials name="X" link="www.hallo.de" setInput={handleSocials} />
         </div>
       </div>
     </div>

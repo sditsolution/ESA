@@ -1,166 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styles from "../../styles/coaching/course.module.css";
 import image from "../../assets/pictures/courseTestpng.png";
 
 const Course = () => {
-  const courses = [
-    {
-      courseId: 1,
-      content: {
-        img: image,
-        title: "Wave Management",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 50,
-        media: "discord",
-      },
-    },
-    {
-      courseId: 2,
-      content: {
-        img: image,
-        title: "Wave Managenmentd awdasd ads a dasdaw daddadadwadsd",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 50,
-        media: "discord",
-      },
-    },
-    {
-      courseId: 3,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 4,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 5,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 6,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 7,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 8,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 9,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 11,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 12,
-      content: {
-        img: "",
-        title: "Zed plays adoiaüdnüasodhüsdpja",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 13,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 1,
-        price: 150,
-        media: "zoom",
-      },
-    },
-    {
-      courseId: 14,
-      content: {
-        img: "",
-        title: "Zed plays",
-        description: "",
-        participants: 4,
-        bookedParticipants: 3,
-        price: 200,
-        media: "zoom",
-      },
-    },
-  ];
+  const [coaching, setCoaching] = useState([]);
+  const { coachname } = useParams();
+  const getCoaching = async () => {
+    const response = await fetch(
+      `http://localhost:3001/getCoaching?userID=${coachname}/courses`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      }
+    );
+    const result = await response.json();
+    setCoaching(result);
+  };
+  useEffect(() => {
+    getCoaching();
+  }, []);
   return (
     <div className={styles.rootContainer}>
       <div className={styles.container}>
@@ -191,28 +53,28 @@ const Course = () => {
             </tr>
           </div>
           <div className={styles.content}>
-            {courses !== undefined
-              ? courses.map((c) => (
+            {coaching !== undefined
+              ? coaching.map((c) => (
                   <div key={c.id} style={{ marginTop: "1rem" }}>
                     <tr style={{ display: "flex", alignItems: "center" }}>
                       {/* <td className={styles.th}>{c.img}</td> */}
                       <td className={styles.th}>
                         <img
-                          src={c.content.img}
+                          src={c.IMAGE}
                           alt="coursePic"
                           style={{
                             height: "100%",
-                            width: "100%",
-                            objectFit: "fill",
+                            width: "50%",
+                            objectFit: "contain",
                           }}
                         />
                       </td>
-                      <td className={styles.title}>{c.content.title}</td>
+                      <td className={styles.title}>{c.TITLE}</td>
                       <td className={styles.th}>
-                        {c.content.bookedParticipants}/{c.content.participants}
+                        {c.PARTICIPANT}/{c.BOOKEDPATICIPANT}
                       </td>
-                      <td className={styles.th}>{c.content.price}</td>
-                      <td className={styles.th}>{c.content.media}</td>
+                      <td className={styles.th}>{c.PRICE}</td>
+                      <td className={styles.th}>{c.MEDIA}</td>
 
                       <td className={styles.th}>
                         <button className={styles.viewButton}>View</button>

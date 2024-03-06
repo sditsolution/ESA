@@ -5,12 +5,17 @@ import SuccessDescription from "./coachGames/profile/SuccessDescription.jsx";
 const Profile = () => {
   return (
     <div className={styles.container}>
-      <GameLink />
-      <SuccessDescription />
-      <div className={styles.helpContainer}>
-        <div className={styles.buttonContainer}>
-          <button className="secondaryBtn">Discard</button>
-          <button className="primaryBtn">Save</button>
+      <div className={styles.header}>
+        <h3>Profile</h3>
+      </div>
+      <div className={styles.content}>
+        <GameLink />
+        <SuccessDescription />
+        <div className={styles.helpContainer}>
+          <div className={styles.buttonContainer}>
+            <button className="secondaryBtn">Discard</button>
+            <button className="primaryBtn">Save</button>
+          </div>
         </div>
       </div>
     </div>

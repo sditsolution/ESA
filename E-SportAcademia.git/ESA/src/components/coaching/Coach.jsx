@@ -6,7 +6,7 @@ import CoachCourses from "./CoachCourses";
 
 const Coach = ({ name }) => {
   const [users, setUsers] = useState([]);
-
+  //coachId aus URL
   useEffect(() => {
     // getUserData();
   }, []);

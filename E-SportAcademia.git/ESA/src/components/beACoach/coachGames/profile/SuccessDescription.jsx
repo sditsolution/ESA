@@ -6,7 +6,7 @@ import styles from "../../../../styles/beACoach/profile/successDescription.modul
 const SuccessDescription = () => {
   return (
     <div className={styles.container}>
-      <Success />
+      {/* <Success /> */}
       <Description />
     </div>
   );

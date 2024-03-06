@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import image from "../../assets/pictures/NowayExample.png";
@@ -6,7 +6,26 @@ import styles from "../../styles/coaching/coachProfile.module.css";
 
 const CoachProfile = () => {
   const navigate = useNavigate();
-  const test = useParams();
+
+  const [coaching, setCoaching] = useState([]);
+  const { coachname } = useParams();
+  const getCoaching = async () => {
+    const response = await fetch(
+      `http://localhost:3001/getCoaching?userID=${coachname}/courses`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      }
+    );
+    const result = await response.json();
+    setCoaching(result);
+  };
+  useEffect(() => {
+    getCoaching();
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -56,9 +75,9 @@ const CoachProfile = () => {
         <div className={styles.containerButton}>
           <button
             className="primaryBtn"
-            onClick={() => navigate(`/coaches/${test.coachname}/courses`)}
+            onClick={() => navigate(`/coaches/${coachname}/courses`)}
           >
-            View Course(10)
+            View Course ({coaching.length})
           </button>
           <button className="primaryBtn"> report</button>
         </div>
