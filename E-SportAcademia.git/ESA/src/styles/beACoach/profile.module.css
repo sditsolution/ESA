@@ -8,7 +8,8 @@
 }
 .content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   overflow-y: scroll;
 }
 .helpContainer {
@@ -19,6 +20,6 @@
   display: flex;
   justify-content: space-around;
   margin-top: 2rem;
-  width: 20rem;
-  margin-right: 7rem;
+  width: 25rem;
+  margin-right: 13.5rem;
 }

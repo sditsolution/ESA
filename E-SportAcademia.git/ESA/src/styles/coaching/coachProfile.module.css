@@ -69,9 +69,9 @@
 }
 .containerButton {
   display: flex;
-  margin-left: 23rem;
+  margin-left: 21rem;
   margin-top: 1rem;
-  width: 20rem;
+  width: 23rem;
   flex-direction: row-reverse;
   justify-content: space-around;
 }

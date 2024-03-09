@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 21rem;
+  width: 35rem;
+  border: 1px solid rgb(201, 198, 198);
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: white;
+}
+.headercontainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(201, 198, 198);
+}
+.header {
+  display: flex;
+  align-items: center;
+  width: 10rem;
+  justify-content: space-around;
+}
+.headercontainer h3 {
+  margin-left: 2rem;
+}
+.chartSelection {
+  display: flex;
+  margin-right: 2rem;
+}
+.selection {
+  margin-right: 2rem;
+  height: 1.2rem;
+  width: 6rem;
+  border: 1px solid rgb(201, 198, 198);
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 11rem;
+}
+.activeChart {
+  width: 5rem;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  background-color: #00006d;
+  color: white;
+}
+.inActiveChart {
+  width: 5rem;
+  height: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(201, 198, 198);
+  background-color: rgb(201, 198, 198);
+  color: white;
+  cursor: pointer;
+}
+.chartContainer {
+  background-color: white;
+  height: 17rem;
+  width: 35rem;
+}

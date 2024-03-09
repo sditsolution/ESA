@@ -67,8 +67,6 @@ const Profile = ({ userData }) => {
       setPhone(credentials.PHONE);
     }
     if (adress !== credentials.STREET) {
-      console.log("Backend" + credentials.STREET);
-      console.log("Frontend" + adress);
       setAdress(credentials.STREET);
     }
     if (plz !== credentials.PLZ) {

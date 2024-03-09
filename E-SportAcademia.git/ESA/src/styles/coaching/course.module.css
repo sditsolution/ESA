@@ -1,14 +1,15 @@
 .rootContainer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 3rem;
 }
 .container {
   display: flex;
   flex-direction: column;
   border-radius: 1.125rem;
   height: 35rem;
-  margin-top: 3rem;
   width: 75rem;
   overflow: hidden;
   background-color: white;

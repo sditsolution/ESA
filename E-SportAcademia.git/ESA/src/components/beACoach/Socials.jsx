@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/beACoach/socials.module.css";
 
-const Socials = ({ name, link, setInput }) => {
+const Socials = ({ name, link, setInput, input }) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -12,6 +12,7 @@ const Socials = ({ name, link, setInput }) => {
           name={name}
           className={styles.inputLink}
           placeholder={link}
+          defaultValue={input}
           onChange={(e) => setInput(e.target)}
         />
       </div>

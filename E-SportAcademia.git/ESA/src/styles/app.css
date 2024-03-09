@@ -12,7 +12,7 @@
 .primaryBtn {
   font-size: 1em;
   height: 2rem;
-  width: 8rem;
+  width: 10rem;
   border-radius: 0.5rem;
   border: 1px solid black;
   background-color: #00006d;
@@ -22,7 +22,7 @@
 .primayBtnDisabled {
   font-size: 1em;
   height: 2rem;
-  width: 8rem;
+  width: 10rem;
   border-radius: 0.5rem;
   border: 1px solid rgb(201, 198, 198);
   background-color: rgb(201, 198, 198);
@@ -31,7 +31,7 @@
 .secondaryBtn {
   font-size: 1em;
   height: 2rem;
-  width: 8rem;
+  width: 10rem;
   border-radius: 0.5rem;
   border: 1px solid #000036;
   background-color: white;
@@ -49,7 +49,7 @@
 .primaryDeleteBtn {
   font-size: 1em;
   height: 2rem;
-  width: 8rem;
+  width: 10rem;
   border-radius: 0.5rem;
   background-color: rgb(249, 82, 82);
   color: white;
@@ -62,7 +62,7 @@
 .primayDeleteBtnDisabled {
   font-size: 1em;
   height: 2rem;
-  width: 8rem;
+  width: 10rem;
   border-radius: 0.5rem;
   border: 1px solid rgb(201, 198, 198);
   background-color: rgb(201, 198, 198);

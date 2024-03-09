@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  width: 100rem;
+  border: 1px solid rgb(201, 198, 198);
+  border-radius: 1rem;
+  overflow: hidden;
+}

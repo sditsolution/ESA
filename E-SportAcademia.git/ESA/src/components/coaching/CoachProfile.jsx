@@ -9,6 +9,7 @@ const CoachProfile = () => {
 
   const [coaching, setCoaching] = useState([]);
   const { coachname } = useParams();
+
   const getCoaching = async () => {
     const response = await fetch(
       `http://localhost:3001/getCoaching?userID=${coachname}/courses`,

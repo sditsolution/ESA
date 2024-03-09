@@ -95,12 +95,21 @@ app.post("/joinCoach", async (req, res) => {
   UserController.postJoinCoach(req, res, connection);
 });
 
-//Route Coaching
+//Route Coach
 app.post("/createCoaching", async (req, res) => {
   CoachController.postCreateCoaching(req, res, connection);
 });
 app.get("/getCoaching", async (req, res) => {
   CoachController.getCoaching(req, res, connection);
+});
+app.post("/getcoachname", async (req, res) => {
+  CoachController.getCoachname(req, res, connection);
+});
+app.post("/updateProfile", async (req, res) => {
+  CoachController.postCoachProfile(req, res, connection);
+});
+app.post("/getSocials", async (req, res) => {
+  CoachController.getSocials(req, res, connection);
 });
 
 //Route registration
