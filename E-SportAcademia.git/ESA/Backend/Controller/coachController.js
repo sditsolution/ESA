@@ -119,3 +119,18 @@ module.exports.getSocials = async (req, res, connection) => {
     }
   );
 };
+module.exports.getHistoryCoaching = async (req, res, connection) => {
+  const { idcoach } = req.body;
+  connection.query(
+    `SELECT coaching.* FROM esa.coaching, coach WHERE coaching.Date < now() AND coaching.COACHID = coach.idcoach AND coach.idcoach =? ORDER BY coaching.DATE`,
+    [idcoach],
+    (error, result) => {
+      if (error) {
+        res.status(500).json({ serverStatus: -1 });
+        console.log("Unable to get coaching", error);
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+};

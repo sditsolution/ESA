@@ -27,6 +27,7 @@ export const UserContext = createContext(null);
 
 function App() {
   const [userContext, setUserContext] = useState();
+  const [userData, setUserData] = useState();
 
   const loginUser = async (email, frontendPassword) => {};
 
@@ -38,6 +39,10 @@ function App() {
     //history.push("/login");
   };
   useEffect(() => {
+    const userDataString = localStorage.getItem("user");
+    if (userDataString !== undefined) {
+      setUserData(JSON.parse(userDataString));
+    }
     // Versuche, den Benutzerkontext aus dem lokalen Speicher zu laden
   }, []);
 
@@ -74,7 +79,10 @@ function App() {
               <Route path="coaches/:coachname" element={<Coach />} />
               <Route path="coaches/:coachname/courses" element={<Course />} />
               <Route path="history" element={<History />} />
-              <Route path="coaching" element={<CoachingOverview />} />
+              <Route
+                path="coaching"
+                element={<CoachingOverview userData={userData} />}
+              />
               <Route path="myCoachings" element={<BeACoach />} />
               <Route path="profile" element={<Profile />} />
               <Route path="/settings/:credential" element={<Settings />} />
