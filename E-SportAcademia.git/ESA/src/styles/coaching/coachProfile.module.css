@@ -3,7 +3,7 @@
   flex-direction: column;
   border: 1px solid rgb(197, 196, 196);
   border-radius: 1.125rem;
-  width: 45rem;
+  width: 30;
   height: 35rem;
   overflow: hidden;
 }
@@ -22,16 +22,18 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  height: 32rem;
+  height: 35rem;
 }
 .contentHeader {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin-top: 1rem;
-  margin-left: 2rem;
 }
 .containerImg {
-  height: 10rem;
-  width: 10rem;
+  height: 13rem;
+  width: 13rem;
   object-fit: contain;
   background-repeat: no-repeat;
   border-radius: 0.25rem;
@@ -41,21 +43,6 @@
   height: 100%;
   width: 100%;
 }
-
-.containerSocials {
-  margin-left: 2rem;
-  display: flex;
-  flex-direction: column;
-  width: 15rem;
-}
-.containerSocials ul {
-  text-decoration: none;
-  list-style: none;
-}
-.rewards {
-  margin-left: 2rem;
-}
-
 .stars {
   margin-left: 2rem;
 }
@@ -63,15 +50,28 @@
   margin-top: 1rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  height: 14rem;
+  height: 11rem;
+  width: 35rem;
   overflow-y: scroll;
   text-align: justify;
 }
+.buttomContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.socialsContainer {
+  display: flex;
+  width: 10rem;
+  align-items: center;
+  justify-content: space-around;
+}
 .containerButton {
   display: flex;
-  margin-left: 21rem;
-  margin-top: 1rem;
   width: 23rem;
+  margin-top: 1rem;
   flex-direction: row-reverse;
   justify-content: space-around;
+  align-items: center;
 }

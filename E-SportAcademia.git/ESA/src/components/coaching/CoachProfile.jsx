@@ -3,16 +3,18 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import image from "../../assets/pictures/NowayExample.png";
 import styles from "../../styles/coaching/coachProfile.module.css";
+import { SocialIcon } from "react-social-icons";
 
 const CoachProfile = () => {
   const navigate = useNavigate();
 
   const [coaching, setCoaching] = useState([]);
-  const { coachname } = useParams();
+  const [coachInfo, setCoachInfo] = useState();
+  const { coachname: coachid } = useParams();
 
   const getCoaching = async () => {
     const response = await fetch(
-      `http://localhost:3001/getCoaching?userID=${coachname}/courses`,
+      `http://localhost:3001/getCoaching?userID=${coachid}/courses`,
       {
         method: "GET",
         headers: {
@@ -24,65 +26,79 @@ const CoachProfile = () => {
     const result = await response.json();
     setCoaching(result);
   };
+  const getCoachInformation = async () => {
+    const response = await fetch(
+      `http://localhost:3001/getCoachInformation?userID=${coachid}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      }
+    );
+    const result = await response.json();
+    setCoachInfo(result[0]);
+  };
   useEffect(() => {
     getCoaching();
+    getCoachInformation();
   }, []);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3>Profile</h3>
+        <h3>{coachInfo != undefined ? coachInfo.INGAMENAME : "Profile"}</h3>
       </div>
-      <div className={styles.content}>
-        <div className={styles.contentHeader}>
-          <div className={styles.containerImg}>
-            <img src={image} alt="coachpic" className={styles.img} />
+      {coachInfo !== undefined ? (
+        <div className={styles.content}>
+          <div className={styles.contentHeader}>
+            <div className={styles.containerImg}>
+              <img src={image} alt="coachpic" className={styles.img} />
+            </div>
+            <div className={styles.stars}>Stars</div>
           </div>
-          <div className={styles.containerSocials}>
-            <p style={{ fontWeight: "bold" }}>Socialmedia</p>
-            <ul>
-              <li>Instagram</li>
-              <li>Twitch</li>
-              <li>Youtube</li>
-            </ul>
+          {/* Sterne (Bewertung) */}
+          <div className={styles.containerText}>
+            <p>{coachInfo.DESCRIPTION}</p>
           </div>
-          <div className={styles.rewards}>
-            <p style={{ fontWeight: "bold" }}>Erfolge</p>
+          <div className={styles.buttomContainer}>
+            <div className={styles.socialsContainer}>
+              <SocialIcon
+                network="instagram"
+                url={coachInfo.INSTAGRAM}
+                style={{ height: "2rem", width: "2rem" }}
+              />
+              <SocialIcon
+                network="youtube"
+                url={coachInfo.YOUTUBE}
+                style={{ height: "2rem", width: "2rem" }}
+              />
+              <SocialIcon
+                network="twitter"
+                url={coachInfo.TWITTERX}
+                style={{ height: "2rem", width: "2rem" }}
+              />
+              <SocialIcon
+                network="tiktok"
+                url={coachInfo.TIKTOK}
+                style={{ height: "2rem", width: "2rem" }}
+              />
+            </div>
+
+            <div className={styles.containerButton}>
+              <button
+                className="primaryBtn"
+                onClick={() => navigate(`/coaches/${coachid}/courses`)}
+              >
+                View Course ({coaching.length})
+              </button>
+              <button className="primaryBtn"> report</button>
+            </div>
           </div>
         </div>
-        <div className={styles.stars}>Stars</div>
-        {/* Sterne (Bewertung) */}
-        <div className={styles.containerText}>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
-            dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-            voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-            dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in
-            vulputate velit esse molestie consequat, vel illum dolore eu feugiat
-            nulla facilisis at vero eros et accumsan et iusto odio dignissim qui
-            blandit praesent luptatum zzril delenit augue duis dolore te feugait
-            nulla facilisi. Lorem ipsum dolor sit amet.
-          </p>
-        </div>
-        <div className={styles.containerButton}>
-          <button
-            className="primaryBtn"
-            onClick={() => navigate(`/coaches/${coachname}/courses`)}
-          >
-            View Course ({coaching.length})
-          </button>
-          <button className="primaryBtn"> report</button>
-        </div>
-      </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

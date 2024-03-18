@@ -134,3 +134,18 @@ module.exports.getHistoryCoaching = async (req, res, connection) => {
     }
   );
 };
+module.exports.getCoachInformation = async (req, res, connection) => {
+  const { userID: coachid } = req.query;
+  connection.query(
+    `SELECT user.INGAMENAME, DESCRIPTION,TWITCH,YOUTUBE,INSTAGRAM,TIKTOK,TWITTERX FROM coach, user WHERE idcoach=? AND coach.userID = user.USER_ID`,
+    [coachid],
+    (error, result) => {
+      if (error) {
+        res.status(500).json({ serverStatus: -1 });
+        console.log("Unable to get socials", error);
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+};

@@ -114,6 +114,9 @@ app.post("/getSocials", async (req, res) => {
 app.post("/getHistoryCoaching", async (req, res) => {
   CoachController.getHistoryCoaching(req, res, connection);
 });
+app.get("/getCoachInformation", async (req, res) => {
+  CoachController.getCoachInformation(req, res, connection);
+});
 
 //Route registration
 app.get("/verification", async (req, res) => {
