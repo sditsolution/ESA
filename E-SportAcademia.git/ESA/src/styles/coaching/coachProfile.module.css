@@ -63,14 +63,14 @@
 }
 .socialsContainer {
   display: flex;
-  width: 10rem;
+  width: 13rem;
+  height: 5rem;
   align-items: center;
   justify-content: space-around;
 }
 .containerButton {
   display: flex;
   width: 23rem;
-  margin-top: 1rem;
   flex-direction: row-reverse;
   justify-content: space-around;
   align-items: center;

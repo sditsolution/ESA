@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "../../styles/coaching/course.module.css";
 import image from "../../assets/pictures/courseTestpng.png";
-
+import Modal from "../common/modals/Modal";
+import ViewCoachingForm from "./ViewCoachingForm";
+import PurchaseModal from "../common/modals/PurchaseModal";
+import PurchaseCoachingForm from "../games/purchase/PurchaseCoachingForm";
 const Course = () => {
   const [coaching, setCoaching] = useState([]);
   const { coachname } = useParams();
   const [coach, setCoach] = useState();
+  const [selectedCoaching, setSelectedCoaching] = useState();
+  const [isViewCoachingModalOpen, setIsViewCoachingModalOpen] = useState(false);
+  const [isPurchchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+
   const getCoaching = async () => {
     const response = await fetch(
       `http://localhost:3001/getCoaching?userID=${coachname}/courses`,
@@ -33,10 +40,17 @@ const Course = () => {
       }),
     });
     const result = await response.json();
-
-    console.log(result[0].INGAMENAME);
     setCoach(result[0].INGAMENAME);
   };
+
+  function handleSelection(coaching) {
+    setSelectedCoaching(coaching);
+    setIsViewCoachingModalOpen(true);
+  }
+  function handlePurchaseModal(coaching) {
+    setSelectedCoaching(coaching);
+    setIsPurchaseModalOpen(true);
+  }
   useEffect(() => {
     getCoaching();
     getCoachName();
@@ -77,38 +91,76 @@ const Course = () => {
             <div className={styles.content}>
               {coaching !== undefined
                 ? coaching.map((c) => (
-                    <div key={c.id} style={{ marginTop: "1rem" }}>
-                      <tr style={{ display: "flex", alignItems: "center" }}>
-                        {/* <td className={styles.th}>{c.img}</td> */}
-                        <td className={styles.th}>
-                          <img
-                            src={c.IMAGE}
-                            alt="coursePic"
-                            style={{
-                              height: "100%",
-                              width: "50%",
-                              objectFit: "contain",
-                            }}
-                          />
-                        </td>
-                        <td className={styles.title}>{c.TITLE}</td>
-                        <td className={styles.th}>
-                          {c.PARTICIPANT}/{c.BOOKEDPATICIPANT}
-                        </td>
-                        <td className={styles.th}>{c.PRICE}</td>
-                        <td className={styles.th}>{c.MEDIA}</td>
+                    <React.Fragment key={c.id}>
+                      <div style={{ marginTop: "1rem" }}>
+                        <tr style={{ display: "flex", alignItems: "center" }}>
+                          {/* <td className={styles.th}>{c.img}</td> */}
+                          <td className={styles.th}>
+                            <img
+                              src={c.IMAGE}
+                              alt="coursePic"
+                              style={{
+                                height: "100%",
+                                width: "30%",
+                                objectFit: "contain",
+                              }}
+                            />
+                          </td>
+                          <td className={styles.title}>{c.TITLE}</td>
+                          <td className={styles.th}>
+                            {c.PARTICIPANT}/{c.BOOKEDPATICIPANT}
+                          </td>
+                          <td className={styles.th}>{c.PRICE}</td>
+                          <td className={styles.th}>{c.MEDIA}</td>
 
-                        <td className={styles.th}>
-                          <button className={styles.viewButton}>View</button>
-                        </td>
-                      </tr>
-                    </div>
+                          <td className={styles.th}>
+                            <div className={styles.buttonContainer}>
+                              <button
+                                className={styles.viewButton}
+                                onClick={() => handleSelection(c)}
+                              >
+                                View
+                              </button>
+                              <button
+                                className={
+                                  c.BOOKEDPATICIPANT === c.PARTICIPANT
+                                    ? styles.bookButtonEnabled
+                                    : styles.bookButton
+                                }
+                                onClick={() => handlePurchaseModal(c)}
+                                disabled={c.BOOKEDPATICIPANT === c.PARTICIPANT}
+                              >
+                                Book
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      </div>
+                    </React.Fragment>
                   ))
                 : null}
             </div>
           </table>
         </div>
       </div>
+      {isViewCoachingModalOpen && (
+        <Modal onClose={() => setIsViewCoachingModalOpen(false)}>
+          <ViewCoachingForm coaching={selectedCoaching} />
+        </Modal>
+      )}
+      {isPurchchaseModalOpen && (
+        <PurchaseModal onClose={() => setIsPurchaseModalOpen(false)}>
+          <PurchaseCoachingForm
+            coachingid={selectedCoaching.idcoaching}
+            title={selectedCoaching.TITLE}
+            price={selectedCoaching.PRICE}
+            data={selectedCoaching.DATE}
+            start={selectedCoaching.START}
+            end={selectedCoaching.END}
+            img={selectedCoaching.IMAGE}
+          />
+        </PurchaseModal>
+      )}
     </>
   );
 };

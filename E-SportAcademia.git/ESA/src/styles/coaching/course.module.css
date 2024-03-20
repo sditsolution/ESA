@@ -44,7 +44,7 @@
   justify-content: center;
 }
 
-.viewButton {
+.bookButton {
   font-size: 0.9em;
   height: 2rem;
   width: 4rem;
@@ -54,7 +54,32 @@
   color: white;
   cursor: pointer;
 }
-.viewButton:hover {
+.bookButtonEnabled {
+  font-size: 0.9em;
+  height: 2rem;
+  width: 4rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  background-color: gray;
+  color: black;
+}
+.viewButton {
+  font-size: 0.9em;
+  height: 2rem;
+  width: 4rem;
+  border-radius: 0.5rem;
+  border: 1px solid black;
+  background-color: White;
+  color: 00006d;
+  cursor: pointer;
+}
+.viewButton:hover,
+.bookButton:hover {
   background-color: #000036;
   color: white;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
 }

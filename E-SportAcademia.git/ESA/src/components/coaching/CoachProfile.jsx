@@ -83,6 +83,11 @@ const CoachProfile = () => {
                 url={coachInfo.TIKTOK}
                 style={{ height: "2rem", width: "2rem" }}
               />
+              <SocialIcon
+                network="twitch"
+                url={coachInfo.TWITCH}
+                style={{ height: "2rem", width: "2rem" }}
+              />
             </div>
 
             <div className={styles.containerButton}>
@@ -92,7 +97,7 @@ const CoachProfile = () => {
               >
                 View Course ({coaching.length})
               </button>
-              <button className="primaryBtn"> report</button>
+              {/* <button className="primaryBtn"> report</button> */}
             </div>
           </div>
         </div>
