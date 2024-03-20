@@ -22,6 +22,7 @@ module.exports.getCoaches = async (req, res, connection) => {
         console.log("Unable to get all coaches", error);
         res.status(500).json({ serverStatus: -1 });
       } else {
+        console.log(result);
         res.status(200).json(result);
       }
     }

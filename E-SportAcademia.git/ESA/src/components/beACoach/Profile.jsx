@@ -3,6 +3,7 @@ import styles from "../../styles/beACoach/profile.module.css";
 import GameLink from "../beACoach/coachGames/profile/GameLink.jsx";
 import Description from "./coachGames/profile/Description.jsx";
 import toast from "react-hot-toast";
+import BankAccount from "./coachGames/profile/BankAccount.jsx";
 const Profile = () => {
   const [userData, setUserData] = useState();
   const [userDataLink, setUserDataLink] = useState();
@@ -92,6 +93,9 @@ const Profile = () => {
           setDescription={setDescription}
           description={description}
         />
+      </div>
+      <div className={styles.bankContainer}>
+        <BankAccount />
       </div>
       <div className={styles.helpContainer}>
         <div className={styles.buttonContainer}>

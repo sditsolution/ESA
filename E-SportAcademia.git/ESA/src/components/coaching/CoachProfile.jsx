@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import image from "../../assets/pictures/NowayExample.png";
 import styles from "../../styles/coaching/coachProfile.module.css";
 import { SocialIcon } from "react-social-icons";
+import placeholer from "../../assets/pictures/ProfilePlaceholder.png";
 
 const CoachProfile = () => {
   const navigate = useNavigate();
@@ -53,7 +54,11 @@ const CoachProfile = () => {
         <div className={styles.content}>
           <div className={styles.contentHeader}>
             <div className={styles.containerImg}>
-              <img src={image} alt="coachpic" className={styles.img} />
+              <img
+                src={image != undefined ? placeholer : coachInfo.IMAGE}
+                alt="coachpic"
+                className={styles.img}
+              />
             </div>
             <div className={styles.stars}>Stars</div>
           </div>

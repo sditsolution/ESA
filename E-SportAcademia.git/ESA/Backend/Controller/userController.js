@@ -4,40 +4,6 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const azureKeyVault = require("./../azureKeyVault");
 
-// module.exports.getUser = async (req, res, connection) => {
-//   const { email } = req.query;
-//   const { frontendPassword } = req.body;
-//   let checkPw = false;
-//   connection.query(
-//     "SELECT PASSWORD,AUTHORZIED,USER_ID,PASSWORD,USERCREDENTIAL,INGAMENAME, LASTNAME,NAME  FROM user WHERE EMAIL =?",
-//     [email],
-//     (err, result) => {
-//       if (err) {
-//         console.error("Fehler bei der MySQL-Abfrage: ", err);
-//         res.status(500).send("Fehler beim Abrufen der Benutzerdaten");
-//       } else {
-//         const rawdata = result[0];
-//         // Umwandeln des RowDataPacket-Objekts in ein JSON-Objekt
-//         const data = { ...rawdata };
-//         const { PASSWORD: pw } = data;
-//         bcrypt.compare(frontendPassword, pw, function (err, isMatch) {
-//           if (err) {
-//             console.error("Fehler bei der Passwortüberprüfung:", err);
-//           } else if (isMatch) {
-//             checkPw = true;
-//           } else {
-//             checkPw = false;
-//           }
-//         });
-//         if (checkPw) {
-//           res.status(200).send(data);
-//         } else {
-//           res.sendStatus(500);
-//         }
-//       }
-//     }
-//   );
-// };
 module.exports.getUser = async (req, res, connection) => {
   const { email } = req.query;
   const { frontendPassword } = req.body;

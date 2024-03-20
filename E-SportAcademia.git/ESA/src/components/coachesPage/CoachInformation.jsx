@@ -2,13 +2,13 @@ import React from "react";
 import { useState } from "react";
 import styles from "../../styles/coachPages/CoachInformation.module.css";
 import ReportModal from "../common/modals/ReportModal";
+import placeholer from "../../assets/pictures/ProfilePlaceholder.png";
 
 const CoachInformation = ({ setOpenCourses, coach }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openReport, setOpenReport] = useState(false);
 
   function OpenHandleReport() {
-    console.log(openReport);
     if (openReport) {
       setOpenReport(false);
     } else {
@@ -33,7 +33,10 @@ const CoachInformation = ({ setOpenCourses, coach }) => {
     <div className={styles.container}>
       <div className={styles.containerHeader}>
         <div className={styles.headerImg}>
-          <img src={coach.img} alt="img" />
+          <img
+            src={coach.img != undefined ? placeholder : coach.img}
+            alt="img"
+          />
         </div>
         {/* Todo: global css für buttons, icons etc */}
         <div className={styles.socials}>
