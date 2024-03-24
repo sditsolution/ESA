@@ -5,6 +5,7 @@ import image from "../../assets/pictures/NowayExample.png";
 import styles from "../../styles/coaching/coachProfile.module.css";
 import { SocialIcon } from "react-social-icons";
 import placeholer from "../../assets/pictures/ProfilePlaceholder.png";
+import StarRating from "../../ui/StarRating";
 
 const CoachProfile = () => {
   const navigate = useNavigate();
@@ -59,8 +60,10 @@ const CoachProfile = () => {
                 alt="coachpic"
                 className={styles.img}
               />
+              <div className={styles.stars}>
+                <StarRating size={20} />
+              </div>
             </div>
-            <div className={styles.stars}>Stars</div>
           </div>
           {/* Sterne (Bewertung) */}
           <div className={styles.containerText}>

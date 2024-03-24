@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Socials from "../../Socials";
-import styles from "../../../../styles/beACoach/profile/gameLink.module.css";
+import styles from "../../../../styles/beACoach/profile/socialLink.module.css";
 
-const GameLink = ({
+const SocialLink = ({
   setTwitch,
   setYoutube,
   setInstagram,
@@ -31,7 +31,7 @@ const GameLink = ({
   }
   return (
     <div className={styles.container}>
-      <div className={styles.gameContainer}>
+      <div className={styles.contentContainer}>
         <div className={styles.headerContainer}>
           <h3>Links and socials</h3>
         </div>
@@ -72,4 +72,4 @@ const GameLink = ({
   );
 };
 
-export default GameLink;
+export default SocialLink;

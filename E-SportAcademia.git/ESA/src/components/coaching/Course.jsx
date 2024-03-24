@@ -72,6 +72,9 @@ const Course = () => {
                   <p></p>
                 </th>
                 <th className={styles.title}>
+                  <p>Game</p>
+                </th>
+                <th className={styles.title}>
                   <p>Title</p>
                 </th>
                 <th className={styles.th}>
@@ -106,9 +109,13 @@ const Course = () => {
                               }}
                             />
                           </td>
+                          <td className={styles.title}>{c.NAME}</td>
                           <td className={styles.title}>{c.TITLE}</td>
                           <td className={styles.th}>
-                            {c.PARTICIPANT}/{c.BOOKEDPATICIPANT}
+                            {c.PARTICIPANT}/
+                            {c.BOOKEDPATICIPANT != null
+                              ? c.BOOKEDPATICIPANT
+                              : 0}
                           </td>
                           <td className={styles.th}>{c.PRICE}</td>
                           <td className={styles.th}>{c.MEDIA}</td>

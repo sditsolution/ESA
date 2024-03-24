@@ -60,7 +60,7 @@ module.exports.postCreateCoaching = async (req, res, connection) => {
 module.exports.getCoaching = async (req, res, connection) => {
   const { userID } = req.query;
   connection.query(
-    `SELECT * from coaching, game WHERE game.idgame = coaching.GAMEID AND COACHID=?`,
+    `SELECT * from coaching, game WHERE game.idgame = coaching.GAMEID AND COACHID=? AND coaching.DATE >= CurDate()`,
     [userID],
     (error, result) => {
       if (error) {
@@ -89,11 +89,32 @@ module.exports.getCoachname = async (req, res, connection) => {
   );
 };
 module.exports.postCoachProfile = async (req, res, connection) => {
-  const { userID, description, twitch, youtube, instagram, tikTok, twitterX } =
-    req.body;
+  const {
+    userID,
+    description,
+    twitch,
+    youtube,
+    instagram,
+    tikTok,
+    twitterX,
+    accountOwner,
+    bic,
+    iban,
+  } = req.body;
   connection.query(
-    `UPDATE coach SET DESCRIPTION=?, TWITCH=?, YOUTUBE=?, INSTAGRAM=?, TIKTOK=?, TWITTERX=? WHERE idcoach=?`,
-    [description, twitch, youtube, instagram, tikTok, twitterX, userID],
+    `UPDATE coach JOIN bankaccount ON coach.BANKACCOUNTID = bankaccount.idbankaccount SET coach.DESCRIPTION=?, coach.TWITCH=?, coach.YOUTUBE=?, coach.INSTAGRAM=?, coach.TIKTOK=?, coach.TWITTERX=?, bankaccount.ACCOUNTOWNER=?, bankaccount.BIC=?, bankaccount.IBAN=? WHERE idcoach=?`,
+    [
+      description,
+      twitch,
+      youtube,
+      instagram,
+      tikTok,
+      twitterX,
+      accountOwner,
+      bic,
+      iban,
+      userID,
+    ],
     (error, result) => {
       if (error) {
         res.status(500).json({ serverStatus: -1 });
@@ -104,10 +125,10 @@ module.exports.postCoachProfile = async (req, res, connection) => {
     }
   );
 };
-module.exports.getSocials = async (req, res, connection) => {
+module.exports.getCoachAccount = async (req, res, connection) => {
   const { idcoach } = req.body;
   connection.query(
-    `SELECT DESCRIPTION,TWITCH,YOUTUBE,INSTAGRAM,TIKTOK,TWITTERX FROM coach WHERE idcoach=?`,
+    `SELECT coach.IMAGE,coach.EVALUATION,coach.DESCRIPTION,coach.TWITCH,coach.YOUTUBE,coach.INSTAGRAM,coach.TIKTOK,coach.TWITTERX, bankaccount.ACCOUNTOWNER, bankaccount.BIC,bankaccount.IBAN FROM coach, bankaccount WHERE idcoach=? AND coach.BANKACCOUNTID = bankaccount.idBankAccount`,
     [idcoach],
     (error, result) => {
       if (error) {

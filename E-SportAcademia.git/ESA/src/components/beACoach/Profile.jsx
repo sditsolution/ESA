@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/beACoach/profile.module.css";
-import GameLink from "../beACoach/coachGames/profile/GameLink.jsx";
+import SocialLink from "./coachGames/profile/SocialLink.jsx";
 import Description from "./coachGames/profile/Description.jsx";
 import toast from "react-hot-toast";
 import BankAccount from "./coachGames/profile/BankAccount.jsx";
@@ -13,6 +13,9 @@ const Profile = () => {
   const [instagram, setInstagram] = useState();
   const [tikTok, setTiktok] = useState();
   const [twitterX, setTwitterX] = useState();
+  const [accountOwner, setAccountOwner] = useState();
+  const [bic, setBIC] = useState();
+  const [iban, setIBAN] = useState();
 
   const UpdateProfile = async () => {
     let userID = userData.idcoach;
@@ -30,6 +33,9 @@ const Profile = () => {
         instagram,
         tikTok,
         twitterX,
+        accountOwner,
+        bic,
+        iban,
       }),
     })
       .then((response) => response.json())
@@ -43,7 +49,7 @@ const Profile = () => {
   };
   const getSocials = async (id) => {
     const { idcoach } = id;
-    return await fetch(`http://localhost:3001/getSocials`, {
+    return await fetch(`http://localhost:3001/getCoachAccount`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,6 +68,9 @@ const Profile = () => {
         setInstagram(data[0].INSTAGRAM);
         setTiktok(data[0].TIKTOK);
         setTwitterX(data[0].TWITTERX);
+        setAccountOwner(data[0].ACCOUNTOWNER);
+        setBIC(data[0].BIC);
+        setIBAN(data[0].IBAN);
       });
   };
   useEffect(() => {
@@ -77,7 +86,7 @@ const Profile = () => {
         <h2 style={{ marginLeft: "5rem" }}>Profile</h2>
       </div>
       <div className={styles.content}>
-        <GameLink
+        <SocialLink
           setTwitch={setTwitch}
           setYoutube={setYoutube}
           setInstagram={setInstagram}
@@ -95,7 +104,14 @@ const Profile = () => {
         />
       </div>
       <div className={styles.bankContainer}>
-        <BankAccount />
+        <BankAccount
+          setAccountOwner={setAccountOwner}
+          setBIC={setBIC}
+          setIBAN={setIBAN}
+          accountOwner={accountOwner}
+          bic={bic}
+          iban={iban}
+        />
       </div>
       <div className={styles.helpContainer}>
         <div className={styles.buttonContainer}>

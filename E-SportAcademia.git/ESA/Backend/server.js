@@ -108,8 +108,8 @@ app.post("/getcoachname", async (req, res) => {
 app.post("/updateProfile", async (req, res) => {
   CoachController.postCoachProfile(req, res, connection);
 });
-app.post("/getSocials", async (req, res) => {
-  CoachController.getSocials(req, res, connection);
+app.post("/getCoachAccount", async (req, res) => {
+  CoachController.getCoachAccount(req, res, connection);
 });
 app.post("/getHistoryCoaching", async (req, res) => {
   CoachController.getHistoryCoaching(req, res, connection);

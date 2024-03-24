@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/beACoach/socials.module.css";
+import styles from "../../styles/beACoach/profile/socials.module.css";
 
 const Socials = ({ name, link, setInput, input }) => {
   return (
