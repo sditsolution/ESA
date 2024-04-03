@@ -1,0 +1,53 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+- task: Npm@1
+  displayName: 'Installing modules in backend'
+  inputs:
+    command: 'install'
+    workingDir: 'E-SportAcademia.git/ESA/Backend'
+    verbose: true
+
+- task: Npm@1
+  displayName: 'Installing modules in frontend'
+  inputs:
+    command: 'install'
+    workingDir: 'E-SportAcademia.git/ESA'
+    verbose: true
+- task: Npm@1
+  displayName: 'Building modules in frontend'
+  inputs:
+    command: 'custom'
+    workingDir: 'E-SportAcademia.git/ESA'
+    customCommand: 'run build'
+
+- task: Npm@1
+  displayName: 'Building modules in backend'
+  inputs:
+    command: 'custom'
+    workingDir: 'E-SportAcademia.git/ESA/Backend'
+    customCommand: 'run build'
+- task: CopyFiles@2
+  inputs:
+    Contents: |
+      E-SportAcademia.git/ESA/Backend/dist/**
+      E-SportAcademia.git/ESA/dist/**
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'release'
+    publishLocation: 'Container'
